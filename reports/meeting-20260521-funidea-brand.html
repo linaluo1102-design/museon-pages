@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>會議記錄｜汎樂創意行銷有限公司｜2026-05-21</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Inter', sans-serif;
+      background: #F4F6F8;
+      color: #1A1C1E;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body { background: #fff; }
+      .page-wrap { box-shadow: none; }
+      .no-print { display: none; }
+    }
+
+    /* ===== Layout ===== */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 4px 40px rgba(0,77,115,0.10);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: #004D73;
+      color: #fff;
+      padding: 56px 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Geometric SVG decorations */
+    .header-deco {
+      position: absolute;
+      top: 0; right: 0;
+      pointer-events: none;
+    }
+    .header-deco-bottom {
+      position: absolute;
+      bottom: -1px; left: 0;
+      pointer-events: none;
+    }
+
+    .header-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #CC8899;
+      margin-bottom: 16px;
+    }
+
+    .header-company {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+    }
+    .header-company-en {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
+
+    .header-title {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.80);
+    }
+    .header-meta-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #CC8899;
+      flex-shrink: 0;
+    }
+
+    /* ===== OVERVIEW CARDS ===== */
+    .overview-section {
+      background: #EDD8DC;
+      padding: 32px 56px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .overview-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 20px 20px;
+      text-align: center;
+      border-top: 3px solid #004D73;
+      box-shadow: 0 2px 12px rgba(0,77,115,0.07);
+    }
+
+    .overview-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #004D73;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .overview-number span {
+      font-size: 20px;
+      font-weight: 500;
+      color: #CC8899;
+    }
+
+    .overview-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #5E6063;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .section {
+      padding: 48px 56px;
+    }
+    .section + .section {
+      padding-top: 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #004D73;
+      letter-spacing: 0.02em;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, #CC8899 0%, #EDD8DC 100%);
+      border-radius: 2px;
+    }
+
+    /* ===== TOPIC CARDS ===== */
+    .topics-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .topic-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 28px 24px 32px;
+      border-left: 4px solid #CC8899;
+      box-shadow: 0 2px 16px rgba(0,77,115,0.06);
+      position: relative;
+      transition: box-shadow 0.2s;
+    }
+    .topic-card:hover {
+      box-shadow: 0 6px 28px rgba(0,77,115,0.12);
+    }
+
+    .topic-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .topic-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #004D73;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .topic-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #004D73;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .topic-content {
+      padding-left: 52px;
+    }
+
+    .topic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .topic-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #1A1C1E;
+      line-height: 1.65;
+    }
+
+    .bullet-diamond {
+      width: 7px;
+      height: 7px;
+      background: #CC8899;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .topic-insight {
+      margin-top: 14px;
+      background: linear-gradient(135deg, #EDD8DC 0%, #F7EFF1 100%);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #5E6063;
+      border-left: 3px solid #CC8899;
+    }
+    .topic-insight strong {
+      color: #CC8899;
+      font-weight: 600;
+    }
+
+    /* Sub-levels (for topic 1 layers) */
+    .topic-layer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .topic-layer-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #1A1C1E;
+    }
+
+    .layer-badge {
+      background: #4A9A8A;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== ACTION ITEMS ===== */
+    .action-section {
+      background: linear-gradient(180deg, #F4F6F8 0%, #fff 100%);
+      padding: 48px 56px;
+    }
+
+    .action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px 22px;
+      box-shadow: 0 2px 12px rgba(0,77,115,0.06);
+      border: 1px solid #EDD8DC;
+    }
+
+    .action-checkbox {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #CC8899;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      background: #fff;
+    }
+
+    .action-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #CC8899;
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      margin-top: 4px;
+      min-width: 28px;
+    }
+
+    .action-text {
+      font-size: 14px;
+      color: #1A1C1E;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .action-text strong {
+      color: #004D73;
+      font-weight: 600;
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #EDD8DC 30%, #EDD8DC 70%, transparent);
+      margin: 0 56px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #004D73;
+      color: rgba(255,255,255,0.7);
+      padding: 36px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-brand-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-brand-en {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.50);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.60);
+    }
+
+    .footer-tag {
+      display: inline-block;
+      margin-top: 6px;
+      background: #CC8899;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .footer-deco {
+      position: absolute;
+      bottom: -20px;
+      left: 40%;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 700px) {
+      .header { padding: 36px 28px 32px; }
+      .overview-section { padding: 24px 28px; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .section { padding: 36px 28px; }
+      .action-section { padding: 36px 28px; }
+      .divider { margin: 0 28px; }
+      .footer { padding: 28px 28px; flex-direction: column; text-align: left; }
+      .footer-right { text-align: left; }
+      .topic-content { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <!-- Geometric SVG deco top-right -->
+    <svg class="header-deco" width="280" height="260" viewBox="0 0 280 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large quarter-circle arc -->
+      <circle cx="280" cy="0" r="200" stroke="rgba(204,136,153,0.18)" stroke-width="48" fill="none"/>
+      <!-- Medium arc -->
+      <circle cx="280" cy="0" r="130" stroke="rgba(74,154,138,0.12)" stroke-width="32" fill="none"/>
+      <!-- Small solid circle -->
+      <circle cx="240" cy="60" r="12" fill="rgba(204,136,153,0.22)"/>
+      <circle cx="200" cy="30" r="7" fill="rgba(74,154,138,0.18)"/>
+      <!-- Rect decoration -->
+      <rect x="220" y="130" width="40" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+      <rect x="230" y="145" width="24" height="4" rx="2" fill="rgba(204,136,153,0.15)"/>
+    </svg>
+
+    <!-- Wave bottom -->
+    <svg class="header-deco-bottom" width="900" height="28" viewBox="0 0 900 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 28 C150 0, 350 28, 500 14 C650 0, 800 22, 900 10 L900 28 Z" fill="#F4F6F8"/>
+    </svg>
+
+    <div class="header-label">Meeting Record &nbsp;·&nbsp; Confidential</div>
+    <div class="header-company">汎樂創意行銷有限公司</div>
+    <div class="header-company-en">FL IDea Innovation Event Co. Ltd.</div>
+    <h1 class="header-title">品牌定位策略工作坊<br>會議記錄</h1>
+    <div class="header-meta">
+      <div class="header-meta-item">
+        <span class="header-meta-dot"></span>
+        <span>日期：2026 年 05 月 21 日（四）</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-dot"></span>
+        <span>出席：LINA（羅臻）、Zeal</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-dot"></span>
+        <span>議題：8 大主題 / 6 項行動</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== OVERVIEW ===== -->
+  <div class="overview-section">
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="overview-number">8<span> 大</span></div>
+        <div class="overview-label">核心議題</div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-number">6<span> 項</span></div>
+        <div class="overview-label">行動項目</div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-number">1<span> 個</span></div>
+        <div class="overview-label">核心洞見：好玩是能力，不是特質</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOPICS ===== -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">八大議題</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="topics-grid">
+
+      <!-- Topic 1 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">01</div>
+          <div class="topic-title">「好玩」的三層能力定義</div>
+        </div>
+        <div class="topic-content">
+          <div class="topic-layer">
+            <div class="topic-layer-item">
+              <span class="layer-badge">L1 察覺</span>
+              <span>察覺亮點的能力——把無聊的客戶專案發現有趣的切入點</span>
+            </div>
+            <div class="topic-layer-item">
+              <span class="layer-badge">L2 轉化</span>
+              <span>萃取轉化的能力——把發現的東西轉化成可體驗的體驗</span>
+            </div>
+            <div class="topic-layer-item">
+              <span class="layer-badge">L3 共鳴</span>
+              <span>獲得共鳴——最終結晶必須讓觀眾感受到，不只是自己爽</span>
+            </div>
+          </div>
+          <div class="topic-insight">
+            <strong>核心洞見：</strong>「好玩」不是個人特質，而是三層可學習、可培養的能力框架。
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 2 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">02</div>
+          <div class="topic-title">安心感的正向定義陷阱</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>LINA 本人不是「天生好玩的人」，但她渴望好玩——壓力與沉悶才是驅動力的根本來源</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>公司文化氛圍由老闆決定——老闆不需要自己「好玩」，但必須要求並示範「好玩」的標準</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>把渴望轉化為文化要求，是領導者最核心的責任</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Topic 3 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">03</div>
+          <div class="topic-title">要求文化的建立</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>標準可以定得出來，但落實到互動習慣需要 <strong>3–6 個月</strong>的導入期</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>要求文化必須成為日常動作（例：群組未回覆就追問）</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>導入期的未達標是「不習慣」而非錯誤——態度溫和地持續要求</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>利多：公司新員工多，組織變革阻力相對較小</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Topic 4 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">04</div>
+          <div class="topic-title">員工留存兩大策略</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span><strong>防護牆策略（讓離開有代價）：</strong>去同行沒有 MUSEON 支援、自行創業需自費——讓外部選項的吸引力下降</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span><strong>吸力策略（讓留下有驚喜）：</strong>持續提供更多價值，離開就拿不到後續資源與成長機會</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>長線：養到員工 35–40 歲、有房有車有小孩，離職率自然下降</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Topic 5 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">05</div>
+          <div class="topic-title">核心團隊的篩選標準</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span><strong>必要條件缺一不可：</strong>使命認同 ＋ 專業能力</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>只有使命認同但沒有專業能力 → 當志工就好，無法推動業務</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>只有專業能力但沒有使命感 → 文化帶不起來，長期形成阻力</span>
+            </li>
+          </ul>
+          <div class="topic-insight">
+            <strong>過去教訓：</strong>依人不依法——選了有能力但無使命的核心成員，導致文化漂移。
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 6 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">06</div>
+          <div class="topic-title">商務合作夥伴條件</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>理想聯盟對象：與 LINA 有相同理念、服務相同 TA 的老闆</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>不是找「能力互補」，而是找「方向一致」——方向共識優先於能力分工</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>未來可能形成聯盟／類商會形式，擴大生態系影響力</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Topic 7 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">07</div>
+          <div class="topic-title">TA 的核心洞見</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>目標服務對象：<strong>沒有員工心態、想創業、背後動力是「讓家人生活更好」的人</strong></span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>服務 Zeal 的初衷：讓他不焦慮、把關係修好、照顧好女兒——這是真實的情感驅動力</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>TA 的核心痛點不是「想成功」，而是「不想讓在乎的人失望」</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Topic 8 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-num">08</div>
+          <div class="topic-title">200 名單篩選結果</div>
+        </div>
+        <div class="topic-content">
+          <ul class="topic-list">
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>LINA 的 200 人名單中，<strong>只有 4 人</strong>符合理想合作夥伴條件</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>關鍵盲點：過去傾向找「很努力、很有企圖心的人」——這類人對事業發展的幫助有限</span>
+            </li>
+            <li>
+              <span class="bullet-diamond"></span>
+              <span>正確標準：<strong>找認同使命的人</strong>，而非只是好學或勤奮的人</span>
+            </li>
+          </ul>
+          <div class="topic-insight">
+            <strong>重新框架：</strong>名單篩選是在找盟友，不是在找學員。標準升級，數量自然縮減。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===== ACTION ITEMS ===== -->
+  <section class="action-section">
+    <div class="section-header">
+      <h2 class="section-title">行動項目</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="action-list">
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">A-01</div>
+        <div class="action-text">
+          <strong>LINA 整理案例庫：</strong>列出過去 3–5 個「讓自己覺得好玩」的案子，提供給 MUSEON 萃取「好玩」的具體標準
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">A-02</div>
+        <div class="action-text">
+          <strong>建立審核標準：</strong>由案例萃取出「好玩」的打勾打叉具體審核清單，形成可操作的品質標準
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">A-03</div>
+        <div class="action-text">
+          <strong>要求文化導入：</strong>設計群組追蹤機制（態度溫和，結果明確），建立日常的要求與回應循環
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">A-04</div>
+        <div class="action-text">
+          <strong>核心主管重新評估：</strong>逐一核對現有核心主管是否同時具備「使命認同」＋「專業能力」兩大條件
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">A-05</div>
+        <div class="action-text">
+          <strong>梳理離開的代價清單：</strong>具體列出防護牆內容，讓員工清楚「留下」所能保有的獨特資源與機會
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">A-06</div>
+        <div class="action-text">
+          <strong>重新篩選 200 人名單：</strong>以「方向一致 ＋ 共同 TA」為新標準，重新評估合作夥伴候選人
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <!-- Geometric footer deco -->
+    <svg class="footer-deco" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="150" cy="150" r="140" stroke="#fff" stroke-width="40" fill="none"/>
+    </svg>
+
+    <div class="footer-brand">
+      <div class="footer-brand-name">汎樂創意行銷有限公司</div>
+      <div class="footer-brand-en">FL IDea Innovation Event Co. Ltd.</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-date">2026 / 05 / 21 &nbsp;·&nbsp; 品牌策略工作坊</div>
+      <span class="footer-tag">Internal Use Only</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
