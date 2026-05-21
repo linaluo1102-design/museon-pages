@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>會議記錄｜汎樂創意品牌策略深化｜2026.05.21</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-primary: #0f0f1a;
+      --bg-secondary: #1a1a2e;
+      --bg-card: #16213e;
+      --bg-card-hover: #1e2d52;
+      --accent-blue: #4f8ef7;
+      --accent-purple: #a855f7;
+      --accent-teal: #2dd4bf;
+      --accent-pink: #f472b6;
+      --accent-amber: #fbbf24;
+      --accent-green: #34d399;
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: rgba(79, 142, 247, 0.15);
+      --gradient-main: linear-gradient(135deg, #4f8ef7 0%, #a855f7 100%);
+      --gradient-teal: linear-gradient(135deg, #2dd4bf 0%, #4f8ef7 100%);
+      --gradient-warm: linear-gradient(135deg, #fbbf24 0%, #f472b6 100%);
+      --gradient-green: linear-gradient(135deg, #34d399 0%, #2dd4bf 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, '蘋方-繁', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── 背景粒子層 ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(79,142,247,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168,85,247,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ══════════════ HEADER ══════════════ */
+    .header {
+      text-align: center;
+      padding: 56px 32px 48px;
+      margin-bottom: 40px;
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-main);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(79,142,247,0.12);
+      border: 1px solid rgba(79,142,247,0.3);
+      color: var(--accent-blue);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 900;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .header h2 {
+      font-size: clamp(14px, 2vw, 17px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: all 0.25s ease;
+    }
+
+    .meta-chip:hover {
+      background: rgba(79,142,247,0.1);
+      border-color: rgba(79,142,247,0.3);
+      color: var(--text-primary);
+    }
+
+    .meta-chip .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gradient-main);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════ SECTION TITLE ══════════════ */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 48px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ══════════════ CARD ══════════════ */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      background: var(--bg-card-hover);
+    }
+
+    .card-accent {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+    }
+
+    .card-accent.blue   { background: var(--gradient-main); }
+    .card-accent.teal   { background: var(--gradient-teal); }
+    .card-accent.warm   { background: var(--gradient-warm); }
+    .card-accent.green  { background: var(--gradient-green); }
+    .card-accent.purple { background: linear-gradient(180deg, #a855f7, #ec4899); }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card-icon {
+      font-size: 24px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* ── 正文 ── */
+    .card p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── 列表 ── */
+    .card ul, .card ol {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .card ul li, .card ol li {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      padding: 5px 0 5px 22px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .card ul li:last-child, .card ol li:last-child {
+      border-bottom: none;
+    }
+
+    .card ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-size: 12px;
+      top: 7px;
+    }
+
+    .card ol {
+      counter-reset: list-counter;
+    }
+
+    .card ol li {
+      counter-increment: list-counter;
+    }
+
+    .card ol li::before {
+      content: counter(list-counter);
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: var(--gradient-main);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 18px;
+      text-align: center;
+    }
+
+    /* ── 強調文字 ── */
+    .highlight {
+      background: rgba(79,142,247,0.12);
+      border: 1px solid rgba(79,142,247,0.25);
+      color: var(--accent-blue);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 2px 3px;
+    }
+
+    .tag-blue   { background: rgba(79,142,247,0.15); color: var(--accent-blue); border: 1px solid rgba(79,142,247,0.3); }
+    .tag-purple { background: rgba(168,85,247,0.15); color: var(--accent-purple); border: 1px solid rgba(168,85,247,0.3); }
+    .tag-teal   { background: rgba(45,212,191,0.12); color: var(--accent-teal); border: 1px solid rgba(45,212,191,0.3); }
+    .tag-amber  { background: rgba(251,191,36,0.12); color: var(--accent-amber); border: 1px solid rgba(251,191,36,0.3); }
+    .tag-pink   { background: rgba(244,114,182,0.12); color: var(--accent-pink); border: 1px solid rgba(244,114,182,0.3); }
+    .tag-green  { background: rgba(52,211,153,0.12); color: var(--accent-green); border: 1px solid rgba(52,211,153,0.3); }
+
+    /* ── 警告/備註框 ── */
+    .alert {
+      background: rgba(251,191,36,0.07);
+      border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 14px;
+      color: #d4a63a;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.7;
+    }
+
+    .alert-icon { flex-shrink: 0; font-size: 16px; }
+
+    /* ══════════════ KEY INSIGHT ══════════════ */
+    .key-insight {
+      background: linear-gradient(135deg, rgba(79,142,247,0.1) 0%, rgba(168,85,247,0.1) 100%);
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 18px;
+      padding: 36px 36px 32px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .key-insight::before {
+      content: '"';
+      position: absolute;
+      top: -20px; left: 20px;
+      font-size: 160px;
+      font-weight: 900;
+      color: rgba(168,85,247,0.08);
+      line-height: 1;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .key-insight-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--gradient-main);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .key-insight-title {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 900;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .key-insight p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 10px;
+    }
+
+    .key-insight-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      border: 1px solid rgba(168,85,247,0.15);
+    }
+
+    .key-insight-stat .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      background: var(--gradient-warm);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .key-insight-stat .stat-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ══════════════ 三欄框架 ══════════════ */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .mini-card {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: all 0.25s ease;
+    }
+
+    .mini-card:hover {
+      background: rgba(79,142,247,0.07);
+      border-color: rgba(79,142,247,0.25);
+    }
+
+    .mini-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .mini-card-content {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ══════════════ 行動項目 ══════════════ */
+    .action-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .action-header {
+      background: linear-gradient(135deg, rgba(52,211,153,0.12) 0%, rgba(45,212,191,0.08) 100%);
+      border-bottom: 1px solid rgba(52,211,153,0.15);
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .action-header-icon { font-size: 22px; }
+
+    .action-header-text h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+
+    .action-header-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .action-list {
+      padding: 8px 0;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s ease;
+    }
+
+    .action-item:last-child { border-bottom: none; }
+
+    .action-item:hover {
+      background: rgba(52,211,153,0.04);
+    }
+
+    .action-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(52,211,153,0.35);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .action-item:hover .action-checkbox {
+      border-color: var(--accent-green);
+      background: rgba(52,211,153,0.08);
+    }
+
+    .action-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-green);
+      min-width: 20px;
+      margin-top: 3px;
+    }
+
+    .action-content {
+      flex: 1;
+    }
+
+    .action-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+      margin-bottom: 3px;
+    }
+
+    .action-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ══════════════ FOOTER ══════════════ */
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer span {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* ══════════════ 分隔線 ══════════════ */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 8px 0 20px;
+    }
+
+    /* ══════════════ RESPONSIVE ══════════════ */
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 24px 16px 60px; }
+      .card { padding: 22px 20px; }
+      .header { padding: 36px 20px 32px; }
+      .key-insight { padding: 28px 24px 24px; }
+      .action-item { padding: 14px 20px; }
+      .action-header { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="header">
+    <div class="header-badge">
+      <span>📋</span> Meeting Record
+    </div>
+    <h1>汎樂創意｜品牌策略深化輔導</h1>
+    <h2>好玩定義落地・員工文化・合夥人篩選</h2>
+    <div class="divider" style="margin: 24px 0 20px;"></div>
+    <div class="meta-row">
+      <div class="meta-chip"><span class="dot"></span>2026 年 5 月 21 日</div>
+      <div class="meta-chip"><span class="dot"></span>LINA（汎樂創意老闆）</div>
+      <div class="meta-chip"><span class="dot"></span>Zeal（品牌策略顧問）</div>
+      <div class="meta-chip"><span class="dot"></span>一對一策略輔導</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ SECTION 1: 好玩的品牌價值 ═══════════ -->
+  <div class="section-title">議題 01 — 品牌核心主張</div>
+
+  <div class="card">
+    <div class="card-accent blue"></div>
+    <div class="card-header">
+      <div class="card-icon">🎮</div>
+      <div>
+        <div class="card-title">「好玩」的品牌價值定義</div>
+        <div class="card-subtitle">汎樂創意最核心的品牌主張之一</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <span class="alert-icon">💡</span>
+      <span>Zeal 觀點：老闆渴望好玩但要求員工做到，是有衝突的——但可以接受。重點是你要真的在<strong>享受好玩</strong>，而不只是要求別人。</span>
+    </div>
+
+    <p>好玩需要貫穿所有接觸點：名片、合約筆、接待道具、活動細節。</p>
+    <p style="font-size: 13px; color: var(--text-muted);">🔎 案例：探店網紅穿成柯南，名正探柯南——第一眼就讓人感受到品牌性格。</p>
+
+    <div class="divider"></div>
+
+    <p style="font-size: 13px; font-weight: 600; color: var(--accent-blue); margin-bottom: 14px;">⚙️ 好玩的三個核心能力（LINA 萃取）</p>
+    <div class="three-col">
+      <div class="mini-card">
+        <div class="mini-card-label" style="color: var(--accent-blue);">① 察覺</div>
+        <div class="mini-card-content">把頻繁的東西變有趣——察覺與發現亮點的能力</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label" style="color: var(--accent-purple);">② 萃取</div>
+        <div class="mini-card-content">把隱性經驗顯性化，提供給客戶具體體驗</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label" style="color: var(--accent-teal);">③ 共鳴</div>
+        <div class="mini-card-content">不是只有自己爽，要讓客戶也感受到好玩</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px; font-size: 13.5px;">
+      <span class="tag tag-amber">下一步</span>
+      請員工（GVT 或女性員工）重新描述「對汎樂的好玩是什麼」→ 形成可勾選的<strong style="color: var(--text-primary);">好玩審計標準</strong>
+    </p>
+  </div>
+
+  <!-- ═══════════ SECTION 2: 安心感 ═══════════ -->
+  <div class="card">
+    <div class="card-accent warm"></div>
+    <div class="card-header">
+      <div class="card-icon">🛡️</div>
+      <div>
+        <div class="card-title">「安心感」的定義與風險</div>
+        <div class="card-subtitle">汎樂的另一個品牌核心——但需要謹慎定義</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <span class="alert-icon">⚠️</span>
+      <span>Zeal 警告：如果你的使命從「不安心」出發，你就會一直<strong>扛客戶的情緒</strong>，直到自己壞掉。安心感是中性詞，定義往負面走，就會吸引焦慮、急躁、不穩定的客戶。</span>
+    </div>
+
+    <p>改法：使命感用詞必須<strong style="color: var(--accent-green);">正向</strong>——</p>
+    <div class="three-col" style="grid-template-columns: 1fr 1fr;">
+      <div class="mini-card" style="border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04);">
+        <div class="mini-card-label" style="color: #ef4444;">✗ 負向（危險）</div>
+        <div class="mini-card-content">「讓你不再擔心員工會離開你」</div>
+      </div>
+      <div class="mini-card" style="border-color: rgba(52,211,153,0.2); background: rgba(52,211,153,0.04);">
+        <div class="mini-card-label" style="color: var(--accent-green);">✓ 正向（正確）</div>
+        <div class="mini-card-content">「讓你的公司可以有序傳承」</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px; font-size: 13.5px;">
+      <span class="tag tag-amber">行動</span>
+      安心感也需要建立<strong style="color: var(--text-primary);">正向審計標準</strong>：明確「是什麼」與「不是什麼」
+    </p>
+  </div>
+
+  <!-- ═══════════ SECTION 2: 要求文化 ═══════════ -->
+  <div class="section-title">議題 02 — 組織文化</div>
+
+  <div class="card">
+    <div class="card-accent teal"></div>
+    <div class="card-header">
+      <div class="card-icon">🔗</div>
+      <div>
+        <div class="card-title">要求文化的建立</div>
+        <div class="card-subtitle">從老闆到員工到廠商的完整要求鏈</div>
+      </div>
+    </div>
+
+    <p>標準定得出來，但落實到習慣需要 <span class="highlight">3-6 個月</span> 的貫徹週期。</p>
+
+    <div style="margin: 16px 0;">
+      <p style="font-size: 13px; font-weight: 600; color: var(--accent-teal); margin-bottom: 12px;">要求鏈架構</p>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 16px 20px; background: rgba(0,0,0,0.2); border-radius: 10px; border: 1px solid var(--border);">
+        <span class="tag tag-blue">老闆自我要求</span>
+        <span style="color: var(--text-muted); font-size: 18px;">→</span>
+        <span class="tag tag-purple">員工自我要求</span>
+        <span style="color: var(--text-muted); font-size: 18px;">→</span>
+        <span class="tag tag-teal">員工要求廠商</span>
+      </div>
+    </div>
+
+    <ul>
+      <li>現狀問題：廠商交件達不到標準，是因為中間的<strong style="color: var(--text-primary);">要求鏈斷了</strong></li>
+      <li>好消息：新員工多，組織變革阻力小（舊員工多才有抗拒）</li>
+      <li>方法：群組問題後若員工未回應，態度要好——導入期沒做到是「不習慣」，不是錯</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════ SECTION 3: 員工留存 ═══════════ -->
+  <div class="card">
+    <div class="card-accent purple"></div>
+    <div class="card-header">
+      <div class="card-icon">🧲</div>
+      <div>
+        <div class="card-title">員工留存策略</div>
+        <div class="card-subtitle">了解離開的原因，才能設計留人機制</div>
+      </div>
+    </div>
+
+    <p style="font-size: 13px; font-weight: 600; color: var(--accent-purple); margin-bottom: 12px;">人離開公司的兩個根本原因</p>
+    <div class="three-col" style="grid-template-columns: 1fr 1fr; margin-bottom: 20px;">
+      <div class="mini-card">
+        <div class="mini-card-label" style="color: var(--accent-pink);">原因 A</div>
+        <div class="mini-card-content">「他要得到的東西得不到」</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label" style="color: var(--accent-amber);">原因 B</div>
+        <div class="mini-card-content">「離開你沒有代價」</div>
+      </div>
+    </div>
+
+    <p style="font-size: 13px; font-weight: 600; color: var(--accent-purple); margin-bottom: 12px;">兩個留人策略</p>
+    <ul>
+      <li><strong style="color: var(--text-primary);">防護牆（降低離開代價）</strong>：例如 MUSE 工具別間公司沒有，用上癮了就不想離開；或離開去自行創業，還要自己付這個成本</li>
+      <li><strong style="color: var(--text-primary);">吸力（持續給予更多）</strong>：你在這邊會持續進化，離開就拿不到後面更多東西</li>
+    </ul>
+
+    <div class="alert" style="margin-top: 14px;">
+      <span class="alert-icon">💡</span>
+      <span>問題：公司員工都很年輕 → 無所畏懼，離職代價低。解法：等員工有了車房小孩，離職代價自然上升；或透過<strong>理念篩選</strong>，一開始就找認同你的人。</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ SECTION 4: 核心團隊篩選 ═══════════ -->
+  <div class="section-title">議題 03 — 人才策略</div>
+
+  <div class="card">
+    <div class="card-accent green"></div>
+    <div class="card-header">
+      <div class="card-icon">🎯</div>
+      <div>
+        <div class="card-title">核心團隊的篩選標準</div>
+        <div class="card-subtitle">依法不依人——使命認同 + 專業能力缺一不可</div>
+      </div>
+    </div>
+
+    <div class="alert" style="background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.2); color: #f87171;">
+      <span class="alert-icon">🚨</span>
+      <span>LINA 過去的錯誤：<strong>依人不依法</strong>——依照技術能力選人，不依使命選人。結果：核心團隊個個能力強，但沒有被使命感動，沒有在平時就做同樣的事。</span>
+    </div>
+
+    <div class="three-col" style="margin-top: 16px;">
+      <div class="mini-card" style="border-color: rgba(100,116,139,0.3);">
+        <div class="mini-card-label" style="color: var(--text-muted);">只有使命・無專業</div>
+        <div class="mini-card-content" style="color: var(--text-muted);">→ 當志工</div>
+      </div>
+      <div class="mini-card" style="border-color: rgba(100,116,139,0.3);">
+        <div class="mini-card-label" style="color: var(--text-muted);">只有專業・無使命</div>
+        <div class="mini-card-content" style="color: var(--text-muted);">→ 當員工或外部顧問</div>
+      </div>
+      <div class="mini-card" style="border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.05);">
+        <div class="mini-card-label" style="color: var(--accent-green);">使命 + 專業 ✓</div>
+        <div class="mini-card-content">→ 才能進<strong>核心團隊</strong></div>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">主管層必須認同使命，否則文化無法向下滲透。</p>
+  </div>
+
+  <!-- ═══════════ SECTION 5: 商務合作夥伴 ═══════════ -->
+  <div class="card">
+    <div class="card-accent blue"></div>
+    <div class="card-header">
+      <div class="card-icon">🤝</div>
+      <div>
+        <div class="card-title">商務合作夥伴的篩選條件</div>
+        <div class="card-subtitle">理念相符才有真正的 Synergy</div>
+      </div>
+    </div>
+
+    <p>LINA 的目標受眾（TA）：想創業、為了讓家人生活更好、有家庭責任感的人。</p>
+
+    <div style="margin: 16px 0; padding: 18px 20px; background: rgba(0,0,0,0.2); border-radius: 10px; border: 1px solid var(--border);">
+      <p style="font-size: 13px; font-weight: 600; color: var(--accent-blue); margin-bottom: 12px;">商務合作夥伴需同時具備</p>
+      <ol>
+        <li>有共同使命（「在平凡中創造喜悅」）</li>
+        <li>有共同 TA（服務對象有交集）</li>
+        <li>才合作，才有真正的 Synergy</li>
+      </ol>
+    </div>
+
+    <p style="font-size: 13.5px;">
+      <span class="tag tag-teal">範例夥伴</span>
+      <strong style="color: var(--text-primary);">Amber（虎尾美業老闆）</strong>——自己做起來後，希望讓員工也可以有相同能力，理念高度吻合。
+    </p>
+
+    <div class="alert" style="margin-top: 14px;">
+      <span class="alert-icon">💡</span>
+      <span>LINA 的洞察：過去找合作夥伴，看的是「有多強」，而不是「理念是否相符」→ 這是一個<strong>重大盲點</strong>。</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ KEY INSIGHT ═══════════ -->
+  <div class="key-insight">
+    <div class="key-insight-label">✨ Key Insight — 本次最大收穫</div>
+    <div class="key-insight-title">
+      真正的合作夥伴不是「最強的人」<br/>而是「理念相符的人」
+    </div>
+    <p>原本以為商務合作夥伴等同於體驗型的人（很努力、有承諾）。這次發現：要找的是<strong style="color: var(--text-primary);">理念相符</strong>的人，而不只是能力強的人。</p>
+    <p>我的時間和資源，要花在與我有共同使命的人身上，一起來做這件事。</p>
+
+    <div class="key-insight-stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">
+        跟進的 200 個名單裡，真正符合<br/>「有使命 + 有專業」的合作對象只有 <strong>4 個</strong><br/>
+        <span style="font-size: 12px; color: var(--text-muted);">→ 把精力集中在這 4 位身上</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ ACTION ITEMS ═══════════ -->
+  <div class="section-title">行動項目</div>
+
+  <div class="action-section">
+    <div class="action-header">
+      <div class="action-header-icon">✅</div>
+      <div class="action-header-text">
+        <h3>下一步行動清單</h3>
+        <p>共 6 項待執行事項，依優先順序排列</p>
+      </div>
+    </div>
+    <div class="action-list">
+
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">01</div>
+        <div class="action-content">
+          <div class="action-title">建立「好玩審計標準」</div>
+          <div class="action-desc">請員工（GVT 或女性員工）重新描述「汎樂的好玩是什麼」→ 形成可打勾/打叉的審計標準清單</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">02</div>
+        <div class="action-content">
+          <div class="action-title">正向重寫「安心感」使命句</div>
+          <div class="action-desc">將安心感定義清晰化，從正向角度重新撰寫使命句，明確「是什麼」與「不是什麼」</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">03</div>
+        <div class="action-content">
+          <div class="action-title">建立要求文化——從老闆開始</div>
+          <div class="action-desc">整頓內部要求鏈：老闆自我要求 → 員工自我要求 → 員工要求廠商，讓「要求」成為日常習慣</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">04</div>
+        <div class="action-content">
+          <div class="action-title">萃取好玩案例的具體標準</div>
+          <div class="action-desc">把幾個讓人印象深刻、感覺好玩的案子整理出來 → 萃取「好玩能力」的可操作化標準</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">05</div>
+        <div class="action-content">
+          <div class="action-title">著重研究 4 位符合條件的合作夥伴</div>
+          <div class="action-desc">200 個名單中篩出的 4 位，深入研究如何啟動合作談判，確認使命與 TA 的交集</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-checkbox"></div>
+        <div class="action-num">06</div>
+        <div class="action-content">
+          <div class="action-title">先整頓內部，再對外合作</div>
+          <div class="action-desc">按照正確順序推進：先把公司內部文化與標準整頓完畢，才進入對外合作階段</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <p>會議記錄整理 by <span>MUSEON</span> &nbsp;|&nbsp; 2026 年 5 月 21 日 &nbsp;|&nbsp; 汎樂創意品牌策略輔導系列</p>
+    <p style="margin-top: 6px; font-size: 11px;">此文件為內部輔導記錄，請妥善保存</p>
+  </footer>
+
+</div>
+</body>
+</html>
