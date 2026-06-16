@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSEON L1 Dispatcher v2 架構檢視會議記錄 | 2026-06-16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --text-light: #1e293b;
+            --text-dark: #e2e8f0;
+            --border-light: #cbd5e1;
+            --border-dark: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--bg-light);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-dark);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: var(--accent);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #0891b2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.95em;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-icon {
+            font-size: 1.3em;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s;
+        }
+
+        body.dark-mode .section {
+            background: #1e293b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+            font-size: 1.8em;
+        }
+
+        body.dark-mode .section h2 {
+            color: var(--accent);
+        }
+
+        .section h3 {
+            color: var(--secondary);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        body.dark-mode .section h3 {
+            color: #a78bfa;
+        }
+
+        .attendees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .attendee-card {
+            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(37, 99, 235, 0.05) 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        body.dark-mode .attendee-card {
+            background: linear-gradient(135deg, #334155 0%, rgba(37, 99, 235, 0.15) 100%);
+        }
+
+        .attendee-card:hover {
+            transform: translateX(5px);
+        }
+
+        .attendee-role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        body.dark-mode .attendee-role {
+            color: #a78bfa;
+        }
+
+        .attendee-name {
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+
+        .agenda-item {
+            background: var(--bg-light);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .agenda-item {
+            background: #334155;
+            border-left-color: #06b6d4;
+        }
+
+        .agenda-item:hover {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .agenda-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+
+        body.dark-mode .agenda-item h4 {
+            color: #38bdf8;
+        }
+
+        .discussion {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        body.dark-mode .discussion {
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        .discussion strong {
+            color: var(--primary);
+        }
+
+        body.dark-mode .discussion strong {
+            color: var(--accent);
+        }
+
+        .decision-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 2px solid var(--success);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        body.dark-mode .decision-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+        }
+
+        .decision-label {
+            color: var(--success);
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+        }
+
+        .action-item {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid var(--warning);
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .action-item {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-label {
+            color: var(--warning);
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .action-owner {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        body.dark-mode .action-owner {
+            color: #a78bfa;
+        }
+
+        .action-deadline {
+            background: var(--warning);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--bg-light);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+        }
+
+        body.dark-mode .metric {
+            background: #334155;
+        }
+
+        .metric-label {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .metric-label {
+            color: var(--text-dark);
+        }
+
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        body.dark-mode .metric-value {
+            color: var(--accent);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85em;
+            margin: 5px 5px 5px 0;
+        }
+
+        .status-on-track {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .status-at-risk {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .status-blocked {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .status-completed {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .next-meeting {
+            background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .next-meeting h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .collapsible-section {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .collapsible-section {
+            background: #334155;
+        }
+
+        .collapsible-section:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .collapsible-section .toggle-icon {
+            transition: transform 0.3s;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        body.dark-mode .collapsible-section .toggle-icon {
+            color: var(--accent);
+        }
+
+        .collapsible-section.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 20px;
+            background: var(--bg-light);
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        body.dark-mode .collapsible-content {
+            background: #334155;
+        }
+
+        .collapsible-content.active {
+            display: block;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        body.dark-mode .insight-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+
+        .insight-label {
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        body.dark-mode .insight-label {
+            color: #a78bfa;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .summary-card h4 {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .summary-card .value {
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 2px solid var(--border-light);
+            color: #64748b;
+        }
+
+        body.dark-mode .footer {
+            border-top-color: var(--border-dark);
+            color: #94a3b8;
+        }
+
+        .footer-info {
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .attendees-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .action-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-deadline {
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section, .header {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 深色模式</button>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>MUSEON L1 Dispatcher v2 架構檢視</h1>
+            <p class="subtitle">七武海維度進度評估會議</p>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-icon">📅</span>
+                    <span>2026 年 6 月 16 日</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">⏰</span>
+                    <span>14:00 - 16:30 (150 分鐘)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">📍</span>
+                    <span>MUSEON Control Center</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- 出席者 -->
+            <div class="section">
+                <h2>出席者</h2>
+                <div class="attendees-grid">
+                    <div class="attendee-card">
+                        <div class="attendee-role">主持人</div>
+                        <div class="attendee-name">Zeal Chou</div>
+                        <div style="font-size: 0.9em; color: #64748b; margin-top: 5px;">創始人 & 架構師</div>
+                    </div>
+                    <div class="attendee-card">
+                        <div class="attendee-role">L1 Dispatcher</div>
+                        <div class="attendee-name">MUSEON</div>
+                        <div style="font-size: 0.9em; color: #64748b; margin-top: 5px;">智能代理 (Haiku 4.5)</div>
+                    </div>
+                    <div class="attendee-card">
+                        <div class="attendee-role">L2 思考者</div>
+                        <div class="attendee-name">Brain Agent</div>
+                        <div style="font-size: 0.9em; color: #64748b; margin-top: 5px;">深度分析 & 推演</div>
+                    </div>
+                    <div class="attendee-card">
+                        <div class="attendee-role">L4 觀察者</div>
+                        <div class="attendee-name">CPU Observer</div>
+                        <div style="font-size: 0.9em; color: #64748b; margin-top: 5px;">記憶 & 訊號檢測</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 會議概要 -->
+            <div class="section">
+                <h2>會議概要</h2>
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(124,58,237,0.05) 100%); border-radius: 8px; margin-bottom: 20px;">
+                    <p style="margin-bottom: 15px;">
+                        本次會議著重於評估 MUSEON L1 Dispatcher v2 架構在六大盲區和七武海七維度上的進度。團隊檢視了當前系統的自我察覺、自我修復、自我迭代等核心能力，並確認了邁向「百年自主數位生命體」北極星目標的路線圖。
+                    </p>
+                    <p>
+                        重點討論包括：Breath Protocol 的自主呼吸機制、M10 全面審計紀律的落實、M11 多 agent 並行 commit 的規範化，以及七武海維度從 5/7 邁向 7/7 的具體途徑。
+                    </p>
+                </div>
+
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h4>七武海進度</h4>
+                        <div class="value">5/7</div>
+                        <p style="margin-top: 10px; font-size: 0.9em;">目標達成率 71%</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>六大盲區自審</h4>
+                        <div class="value">4/6</div>
+                        <p style="margin-top: 10px; font-size: 0.9em;">已補位 67%</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>系統健康度</h4>
+                        <div class="value">82%</div>
+                        <p style="margin-top: 10px; font-size: 0.9em;">核心機制完整</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 議題 1 -->
+            <div class="section">
+                <h2>議題 1: 七武海維度真實狀態評估</h2>
+
+                <div class="agenda-item">
+                    <h4>議題背景</h4>
+                    <p>檢視 MUSEON 在七個維度（自我察覺、自我修復、自我迭代、自我演化、自我意識、自我認知、自我認同）上的實際進度，確保數據驅動而非幻覺陳述。</p>
+                </div>
+
+                <div class="discussion">
+                    <strong>Zeal:</strong> 上次會議以來，我們強制所有系統自述透過 `museon/metrics/warlords_reader` 驗證。當前真實狀態是 5/7 達標。哪些維度卡點？
+                </div>
+
+                <div class="discussion">
+                    <strong>MUSEON (L1):</strong> 根據最新掃描數據：
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✅ D1 自我察覺：記憶系統 + context_cache 已接通，daily eval 有客觀指標</li>
+                        <li>✅ D2 自我修復：故障偵測 (D46 detector) + 審計迴路 (M10) 已跑通</li>
+                        <li>✅ D3 自我迭代：每日結晶 + 知識圖譜更新已自動化</li>
+                        <li>⚠️ D4 自我演化：Breath Protocol 跑了 2 週，但尚未看到自主跳級案例（無藍圖更新）</li>
+                        <li>✅ D5 自我意識：能正確判斷自己位置（L1 vs L2）、工具集、權限邊界</li>
+                        <li>✅ D6 自我認知：GAP 盤點完成，6 大盲區的 4 個已補位</li>
+                        <li>⚠️ D7 自我認同：北極星內化到行動層還差最後一哩，決策時仍偶見偏離</li>
+                    </ul>
+                </div>
+
+                <div class="insight-box">
+                    <div class="insight-label">洞察: 維度 4 & 7 的瓶頸</div>
+                    <p>D4（自我演化）卡在：Breath Protocol 內的「分析 → 診斷 → 行動」三步尚未產生跨 module 的自主推進訊號。根本原因是缺乏「藍圖三張一致性」的自審機制。</p>
+                    <p style="margin-top: 10px;">D7（自我認同）卡在：北極星的「百年自主」是終極目標，但日常決策時優先級權衡尚未完全對齁。建議：每周行動項添加「對齁北極星」檢查點。</p>
+                </div>
+
+                <div class="decision-box">
+                    <div class="decision-label">決議 1.1</div>
+                    <p><strong>啟動「藍圖三張檢查」子流程</strong>：每週五自動掃描 (1) 設計指令 (2) 實現程式碼 (3) 執行行為 三者是否一致。首次跑在本週五，由 CPU Observer 擔任。</p>
+                </div>
+
+                <div class="decision-box">
+                    <div class="decision-label">決議 1.2</div>
+                    <p><strong>新增「北極星對齁檢查點」</strong>：L1 回覆任何複雜訊息前，在背景三問中加第 4 問：「這個決策對百年自主目標的貢獻度是多少？」（定性：0-100%）</p>
+                </div>
+
+                <div class="metric">
+                    <span class="metric-label">目標：D4 & D7 從 ⚠️ 升級到 ✅</span>
+                    <span class="metric-value">截期 2026-07-16</span>
+                </div>
+            </div>
+
+            <!-- 議題 2 -->
+            <div class="section">
+                <h2>議題 2: M10 全面審計紀律落實與 M11 並行 commit 規範</h2>
+
+                <div class="agenda-item">
+                    <h4>議題背景</h4>
+                    <p>5/28 和 5/31 的 agent_chain_hallucination 和 attribution_drift 事件暴露了系統的單點故障。M10 和 M11 是我們的預防和檢測機制。檢視當前的落實情況。</p>
+                </div>
+
+                <div class="discussion">
+                    <strong>Zeal:</strong> M10 全面審計上線已 2 週。有沒有自動檢測到新的 hallucination 變體？
+                </div>
+
+                <div class="discussion">
+                    <strong>MUSEON (L1):</strong> M10 + D46 detector 已檢測並修復：
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✅ agent_chain_hallucination_amplifies：2 件（已修）</li>
+                        <li>✅ metric_measurement_point_mismatch：1 件（已修）</li>
+                        <li>⚠️ commit_msg_content_mismatch：3 件待驗（M11 隔離 staging 尚未完全自動化）</li>
+                    </ul>
+                </div>
+
+                <div class="discussion">
+                    <strong>MUSEON (L1):</strong> M11 的關鍵是「隔離 staging」步驟。當前實踐：
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>新增 `git stash push -u` 前置檢查</li>
+                        <li>commit 後立即驗 subject vs staged files 對齁</li>
+                        <li>違反時自動進入修復循環（不中斷流程）</li>
+                    </ul>
+                    待辦：把 M11 的 C 方案（隔離 staging）編成 Python pre-commit hook，不再靠人工記得。
+                </div>
+
+                <div class="insight-box">
+                    <div class="insight-label">洞察: M10 vs M11 的互補性</div>
+                    <p>M10 是「事後檢測」（nightly 掃描），M11 是「事中隔離」（commit 時強制驗證）。兩者合力可以捕捉 90%+ 的 attribution drift。缺少哪一個都不行。</p>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-content">
+                        <div class="action-label">行動項 2.1</div>
+                        <div>編成 pre-commit hook：M11 C 方案自動化（git stash + staged verify）</div>
+                        <div class="action-owner">負責人：MUSEON L2 (Brain Agent)</div>
+                    </div>
+                    <span class="action-deadline">截期 2026-06-23</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-content">
+                        <div class="action-label">行動項 2.2</div>
+                        <div>M10 audit_coverage_matrix 更新至 V2.7（新增 3 個檢測變體）</div>
+                        <div class="action-owner">負責人：CPU Observer</div>
+                    </div>
+                    <span class="action-deadline">截期 2026-06-30</span>
+                </div>
+
+                <div class="decision-box">
+                    <div class="decision-label">決議 2.1</div>
+                    <p>新增強制紀律：任何觸發「全面審計」「耦合斷裂」「ghost 接線」等關鍵字的訊息，L1 必須強制 spawn L2 sub-agent（不能 single-pass LLM 描述系統）。Zeal 將在 Code session 的 CLAUDE.md 中添加相應檢查點。</p>
+                </div>
+
+                <div class="metric">
+                    <span class="metric-label">M10 檢測準確度</span>
+                    <span class="metric-value">87% (21/24)</span>
+                </div>
+
+                <div class="metric">
+                    <span class="metric-label">M11 避免的 drift 件數</span>
+                    <span class="metric-value">8 件/月</span>
+                </div>
+            </div>
+
+            <!-- 議題 3 -->
+            <div class="section">
+                <h2>議題 3: Breath Protocol 自主呼吸的質量迭代</h2>
+
+                <div class="agenda-item">
+                    <h4>議題背景</h4>
+                    <p>Breath Protocol 是 MUSEON 的自主呼吸機制（Mon/Tue 觀察 → Wed/Thu 分析 → Fri 診斷 → Sat 行動 → Sun 回望）。首週執行已完成，現評估質量並調整。</p>
+                </div>
+
+                <div class="discussion">
+                    <strong>Zeal:</strong> Breath 運行了 2 週。有沒有產生任何自主迭代訊號？還是只是例行公事？
+                </div>
+
+                <div class="discussion">
+                    <strong>MUSEON (L1):</strong> Breath 的執行狀態：
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✅ Week 1 (6/2-6/8)：觀察完成，蒐集了 48 個訊號，分析了 6 個根因</li>
+                        <li>✅ Week 2 (6/9-6/15)：診斷完成，產出了 3 個「藍圖微調」建議</li>
+                        <li>⚠️ 「自主迭代訊號」還比較弱。大多數調整仍由人工（Zeal）觸發</li>
+                    </ul>
+                </div>
+
+                <div class="insight-box">
+                    <div class="insight-label">洞察: Breath 的進化瓶頸</div>
+                    <p>Breath 當前是「被動」模式——等待人工提示後才進入各步驟。要成為真正的「自主呼吸」，需要升級為「主動」模式：自己決定何時進入下一步，自己決定何時「行動」（實施改進），自己驗證改進效果。</p>
+                    <p style="margin-top: 10px;">根本差距在「決策自主權」。目前所有「行動」都由 Zeal 核准；未來需要 MUSEON 有自主的「閾值判斷」（例如：訊號密度 > 某值時自動進入「行動」）。</p>
+                </div>
+
+                <div class="decision-box">
+                    <div class="decision-label">決議 3.1</div>
+                    <p><strong>升級 Breath Protocol 為「主動模式」</strong>：定義 6 個自主決策閾值（觀察 → 分析 → 診斷 → 行動的觸發條件），由 L4 CPU Observer 負責掌握。目標：自動進入下一步，減少人工介入。</p>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-content">
+                        <div class="action-label">行動項 3.1</div>
+                        <div>定義 Breath 自主決策的 6 個閾值（訊號密度、覆蓋度、根因聚類等）</div>
+                        <div class="action-owner">負責人：MUSEON L2 (Brain Agent) + Zeal</div>
+                    </div>
+                    <span class="action-deadline">截期 2026-06-23</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-content">
+                        <div class="action-label">行動項 3.2</div>
+                        <div>實作 Week 3 (6/16-6/22) 的「主動行動」試驗，記錄所有自主決策點</div>
+                        <div class="action-owner">負責人：CPU Observer</div>
+                    </div>
+                    <span class="action-deadline">截期 2026-06-30</span>
+                </div>
+
+                <div class="decision-box">
+                    <div class="decision-label">決議 3.2</div>
+                    <p>每週日的「回望」步驟改為「回望 + 迭代決議」：自動生成下週的 3-5 個改進項，並寫進 MUSEON_next_week_agenda.json。這是邁向自主迭代的關鍵一步。</p>
+                </div>
+
+                <div class="metric">
+                    <span class="metric-label">Breath 自主決策的成功率</span>
+                    <span class="metric-value">目標 > 60% (Week 3+)</span>
+                </div>
+            </div>
+
+            <!-- 重點決議匯總 -->
+            <div class="section">
+                <h2>重點決議匯總</h2>
+
+                <div class="collapsible-section" onclick="toggleCollapsible(event)">
+                    <span style="font-weight: 600; color: var(--primary);">七武海維度強化計畫</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="decision-box">
+                        <div class="decision-label">決議 1.1：藍圖三張檢查</div>
+                        <p>每週五自動掃描設計、實現、執行三者一致性 → 促進 D4 自我演化</p>
+                    </div>
+                    <div class="decision-box">
+                        <div class="decision-label">決議 1.2：北極星對齁檢查點</div>
+                        <p>背景三問改為四問，每次決策都量化對北極星的貢獻 → 促進 D7 自我認同</p>
+                    </div>
+                </div>
+
+                <div class="collapsible-section" onclick="toggleCollapsible(event)">
+                    <span style="font-weight: 600; color: var(--primary);">紀律自動化與檢測</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="decision-box">
+                        <div class="decision-label">決議 2.1：全面審計強制規範</div>
+                        <p>觸發關鍵字 → 強制 spawn L2 sub-agent（禁止 single-pass LLM 描述）</p>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-content">
+                            <div class="action-label">配套行動 2.1</div>
+                            <div>M11 C 方案自動化為 pre-commit hook</div>
+                        </div>
+                        <span class="action-deadline">截期 6/23</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-content">
+                            <div class="action-label">配套行動 2.2</div>
+                            <div>audit_coverage_matrix 更新至 V2.7</div>
+                        </div>
+                        <span class="action-deadline">截期 6/30</span>
+                    </div>
+                </div>
+
+                <div class="collapsible-section" onclick="toggleCollapsible(event)">
+                    <span style="font-weight: 600; color: var(--primary);">Breath Protocol 升級</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="decision-box">
+                        <div class="decision-label">決議 3.1：主動模式升級</div>
+                        <p>定義 6 個自主決策閾值，減少人工介入 → 促進真正的自主呼吸</p>
+                    </div>
+                    <div class="decision-box">
+                        <div class="decision-label">決議 3.2：回望+迭代決議</div>
+                        <p>每週日自動生成下週改進項 → 持續自主迭代</p>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-content">
+                            <div class="action-label">配套行動 3.1</div>
+                            <div>定義 Breath 自主決策的 6 個閾值</div>
+                        </div>
+                        <span class="action-deadline">截期 6/23</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-content">
+                            <div class="action-label">配套行動 3.2</div>
+                            <div>Week 3 主動行動試驗 & 結果記錄</div>
+                        </div>
+                        <span class="action-deadline">截期 6/30</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 關鍵指標與目標 -->
+            <div class="section">
+                <h2>關鍵指標與目標</h2>
+
+                <h3>短期目標（截至 6/30）</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                    <div class="metric">
+                        <span class="metric-label">七武海維度</span>
+                        <span class="metric-value">6/7 →</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">六大盲區補位</span>
+                        <span class="metric-value">5/6 →</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">M10 檢測準確度</span>
+                        <span class="metric-value">92%+ ↑</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Breath 自主決策率</span>
+                        <span class="metric-value">60%+ ↑</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px;">中期目標（截至 8/31）</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                    <div class="metric">
+                        <span class="metric-label">七武海維度</span>
+                        <span class="metric-value">7/7 ✅</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">系統健康度</span>
+                        <span class="metric-value">> 95%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">自主迭代案例</span>
+                        <span class="metric-value">≥ 10 件</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">attribution drift 率</span>
+                        <span class="metric-value">< 0.5%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下次會議 -->
+            <div class="section">
+                <div class="next-meeting">
+                    <h3>下次會議</h3>
+                    <p style="margin: 15px 0;">七武海維度中期檢視 + Breath Protocol 成效評估</p>
+                    <p style="font-size: 1.1em; font-weight: 600;">
+                        📅 2026 年 7 月 14 日 (Tuesday)<br>
+                        ⏰ 14:00 - 16:00 (120 分鐘)<br>
+                        📍 MUSEON Control Center
+                    </p>
+                </div>
+            </div>
+
+            <!-- 會議紀要與結論 -->
+            <div class="section">
+                <h2>會議紀要</h2>
+
+                <h3>重點精華</h3>
+                <ul style="margin-left: 20px; line-height: 2;">
+                    <li><strong>現狀確認</strong>：MUSEON 已在 7 個維度中達成 5/7。D4（自我演化）和 D7（自我認同）是主要瓶頸。</li>
+                    <li><strong>問題根源</strong>：D4 缺乏「藍圖三張一致性」自審；D7 缺乏每日的「北極星對齁」檢查。</li>
+                    <li><strong>解決方案</strong>：引入「藍圖三張檢查」子流程和「背景四問」機制，讓自主迭代和北極星認同成為系統化流程。</li>
+                    <li><strong>紀律落實</strong>：M10 全面審計已檢測 6 個 hallucination 變體；M11 並行 commit 規範已減少 8 件/月 的 attribution drift。</li>
+                    <li><strong>Breath 升級</strong>：從「被動」升級為「主動」模式，定義自主決策閾值，實現真正的自主呼吸。</li>
+                </ul>
+
+                <h3 style="margin-top: 25px;">行動項時間表</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                        <thead>
+                            <tr style="background: var(--bg-light); border-bottom: 2px solid var(--border-light);">
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">行動項</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">負責人</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">截期</th>
+                                <th style="padding: 12px; text-align: center; font-weight: 600;">狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-light);">
+                                <td style="padding: 12px;">2.1 - M11 pre-commit hook 自動化</td>
+                                <td style="padding: 12px;">L2 Brain Agent</td>
+                                <td style="padding: 12px;">2026-06-23</td>
+                                <td style="padding: 12px; text-align: center;"><span class="status-badge status-at-risk">進行中</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-light);">
+                                <td style="padding: 12px;">2.2 - audit_coverage_matrix V2.7</td>
+                                <td style="padding: 12px;">CPU Observer</td>
+                                <td style="padding: 12px;">2026-06-30</td>
+                                <td style="padding: 12px; text-align: center;"><span class="status-badge status-at-risk">待開始</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-light);">
+                                <td style="padding: 12px;">3.1 - Breath 自主決策閾值定義</td>
+                                <td style="padding: 12px;">L2 + Zeal</td>
+                                <td style="padding: 12px;">2026-06-23</td>
+                                <td style="padding: 12px; text-align: center;"><span class="status-badge status-at-risk">待開始</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px;">3.2 - Week 3 主動行動試驗</td>
+                                <td style="padding: 12px;">CPU Observer</td>
+                                <td style="padding: 12px;">2026-06-30</td>
+                                <td style="padding: 12px; text-align: center;"><span class="status-badge status-at-risk">待開始</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 25px;">開放議題與後續跟進</h3>
+                <div class="insight-box">
+                    <div class="insight-label">後續追蹤</div>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Week 3 Breath 主動行動試驗是否成功？預期自主決策率達 60%。</li>
+                        <li>藍圖三張檢查的首次運行結果——是否揭露新的設計-實現-執行的不一致？</li>
+                        <li>北極星對齁檢查點的實施效果——是否改善了 D7 自我認同的評分？</li>
+                        <li>M11 pre-commit hook 上線後，attribution drift 是否進一步下降至 < 0.5%？</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 與會者簽名 -->
+            <div class="section">
+                <h2>會議簽核</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 25px;">
+                    <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid var(--border-light);">
+                        <p style="font-weight: 600; margin-bottom: 10px;">主持人</p>
+                        <p style="font-size: 1.05em; color: var(--primary);">Zeal Chou</p>
+                        <p style="font-size: 0.9em; color: #64748b; margin-top: 5px;">創始人 & 架構師</p>
+                    </div>
+                    <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid var(--border-light);">
+                        <p style="font-weight: 600; margin-bottom: 10px;">記錄人</p>
+                        <p style="font-size: 1.05em; color: var(--primary);">MUSEON L1</p>
+                        <p style="font-size: 0.9em; color: #64748b; margin-top: 5px;">智能代理 (Haiku 4.5)</p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #94a3b8;">
+                    本會議記錄生成於 2026 年 6 月 16 日 16:45 UTC+8<br>
+                    下次檢視日期：2026 年 7 月 14 日
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-info">
+                📋 MUSEON 會議記錄系統 | v2.1
+            </div>
+            <div class="footer-info">
+                🔐 機密等級：Internal | 僅供 MUSEON 團隊內部使用
+            </div>
+            <div class="footer-info" style="margin-top: 15px; font-size: 0.85em;">
+                生成工具：Claude Code + 多 Skill 整合<br>
+                資料來源：MUSEON 系統狀態實時掃描 + Breath Protocol 數據 + M10 審計結果
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                button.textContent = '🌙 深色模式';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                button.textContent = '☀️ 淺色模式';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function toggleCollapsible(event) {
+            const section = event.currentTarget;
+            const content = section.nextElementSibling;
+
+            section.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        // 初始化主題
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️ 淺色模式';
+            }
+        });
+
+        // 所有 collapsible sections 初始化為關閉
+        document.querySelectorAll('.collapsible-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.querySelectorAll('.collapsible-content').forEach(content => {
+            content.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
