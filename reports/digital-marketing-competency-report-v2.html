@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>數位行銷企劃職能全攻略 v2｜教育訓練版</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --gold: #f5a623;
+    --teal: #0f7173;
+    --purple: #7c3aed;
+    --green: #059669;
+    --light-bg: #f8f9fc;
+    --card-bg: #ffffff;
+    --text-main: #2c2c3e;
+    --text-sub: #6b7280;
+    --border: #e5e7eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif; background: var(--light-bg); color: var(--text-main); line-height: 1.75; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); color: white; padding: 64px 40px 56px; text-align: center; }
+  .hero .tag { display: inline-block; background: var(--accent); color: white; font-size: 11px; letter-spacing: 2px; padding: 4px 14px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+  .hero h1 { font-size: 2.3em; font-weight: 700; margin-bottom: 10px; }
+  .hero .sub { font-size: 1em; color: #a0aec0; margin-bottom: 8px; }
+  .hero .version-badge { display: inline-block; background: rgba(245,166,35,0.2); border: 1px solid var(--gold); color: var(--gold); font-size: 12px; padding: 3px 12px; border-radius: 12px; margin-bottom: 20px; }
+  .hero .meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; font-size: 13px; color: #cbd5e0; margin-top: 16px; }
+  .hero .meta span::before { content: "• "; color: var(--gold); }
+
+  /* NAV TOC */
+  .toc { background: white; border-bottom: 1px solid var(--border); padding: 14px 40px; position: sticky; top: 0; z-index: 100; overflow-x: auto; white-space: nowrap; }
+  .toc a { display: inline-block; font-size: 12px; color: var(--text-sub); text-decoration: none; margin-right: 20px; padding: 4px 0; border-bottom: 2px solid transparent; transition: 0.2s; }
+  .toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* CONTAINER */
+  .container { max-width: 1000px; margin: 0 auto; padding: 48px 24px; }
+
+  /* SECTION */
+  .section { margin-bottom: 56px; scroll-margin-top: 52px; }
+  .section-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+  .section-num { width: 38px; height: 38px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .section-title { font-size: 1.3em; font-weight: 700; color: var(--primary); }
+  .section-desc { font-size: 13px; color: var(--text-sub); margin-top: 4px; }
+  .training-tag { display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-left: 8px; vertical-align: middle; }
+
+  /* CARD */
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .card-title { font-size: 1em; font-weight: 700; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .badge-red { background: #fee2e2; color: #dc2626; }
+  .badge-green { background: #d1fae5; color: #059669; }
+  .badge-blue { background: #dbeafe; color: #2563eb; }
+  .badge-gold { background: #fef3c7; color: #d97706; }
+  .badge-purple { background: #ede9fe; color: #7c3aed; }
+
+  /* TABLE */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 0.87em; }
+  .tbl th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .tbl td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .tbl tr:nth-child(even) td { background: var(--light-bg); }
+  .tbl tr:last-child td { border-bottom: none; }
+
+  /* SKILL GRID */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(210px,1fr)); gap: 14px; }
+  .skill-item { background: var(--light-bg); border: 1px solid var(--border); border-left: 4px solid var(--teal); border-radius: 8px; padding: 14px 16px; }
+  .skill-item.must { border-left-color: var(--accent); }
+  .skill-item.bonus { border-left-color: var(--gold); }
+  .skill-item.advanced { border-left-color: var(--purple); }
+  .skill-name { font-weight: 700; font-size: 0.9em; margin-bottom: 4px; }
+  .skill-desc { font-size: 12px; color: var(--text-sub); }
+  .skill-level { font-size: 10px; font-weight: 700; margin-top: 6px; }
+
+  /* STEPS */
+  .step { display: flex; gap: 20px; margin-bottom: 20px; }
+  .step-num { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .step-content { flex: 1; padding-top: 8px; }
+  .step-content h4 { font-size: 0.95em; font-weight: 700; margin-bottom: 4px; }
+  .step-content p { font-size: 0.87em; color: var(--text-sub); }
+  .step-content ul { padding-left: 18px; margin-top: 4px; }
+  .step-content li { font-size: 0.87em; color: var(--text-sub); margin-bottom: 2px; }
+
+  /* PATH GRID */
+  .path-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  @media(max-width:680px){ .path-grid { grid-template-columns: 1fr; } }
+  .path-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .path-header { padding: 16px 20px; font-weight: 700; font-size: 0.95em; color: white; }
+  .path-header.l1 { background: var(--teal); }
+  .path-header.l2 { background: var(--purple); }
+  .path-header.l3 { background: var(--accent); }
+  .path-body { padding: 14px 20px; }
+  .path-item { font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 8px; }
+  .path-item:last-child { border-bottom: none; }
+  .path-item::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+  /* CASE */
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:640px){ .case-grid { grid-template-columns: 1fr; } }
+  .case-success { border-left: 4px solid var(--green); }
+  .case-fail { border-left: 4px solid var(--accent); }
+
+  /* FRAMEWORK BOX */
+  .framework-box { background: linear-gradient(135deg,#0f3460 0%,#16213e 100%); color: white; border-radius: 12px; padding: 28px; margin-bottom: 16px; }
+  .framework-box h3 { color: var(--gold); margin-bottom: 16px; font-size: 1em; }
+  .fi-label { font-size: 11px; color: #a0aec0; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; margin-top: 14px; }
+  .fi-content ul { padding-left: 16px; }
+  .fi-content li { margin-bottom: 4px; font-size: 0.87em; color: #cbd5e0; }
+
+  /* KPI */
+  .kpi-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+  .kpi { flex: 1; min-width: 120px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .kpi-val { font-size: 1.6em; font-weight: 700; color: var(--accent); }
+  .kpi-label { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
+
+  /* QUOTE */
+  .quote { border-left: 4px solid var(--gold); background: #fffbeb; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; font-style: italic; font-size: 0.9em; color: #78350f; }
+  .quote .author { font-style: normal; font-size: 12px; color: var(--text-sub); margin-top: 6px; }
+
+  /* CALLOUT */
+  .callout { border-radius: 10px; padding: 16px 20px; margin: 16px 0; font-size: 0.9em; }
+  .callout-blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .callout-yellow { background: #fffbeb; border: 1px solid #fde68a; }
+  .callout-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .callout-red { background: #fff1f2; border: 1px solid #fecdd3; }
+  .callout-title { font-weight: 700; margin-bottom: 6px; }
+
+  /* PLATFORM GRID */
+  .platform-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 12px; }
+  .platform-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .platform-name { font-weight: 700; font-size: 0.95em; margin-bottom: 6px; }
+  .platform-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; display: inline-block; margin-bottom: 8px; }
+  .platform-detail { font-size: 12px; color: var(--text-sub); }
+
+  /* WEIGHT */
+  .weight { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .w-high { background: #fee2e2; color: #dc2626; }
+  .w-mid { background: #fef3c7; color: #d97706; }
+  .w-low { background: #dbeafe; color: #2563eb; }
+
+  /* EXERCISE BOX */
+  .exercise { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 18px 20px; margin-top: 16px; }
+  .exercise-title { font-weight: 700; font-size: 0.9em; color: #0369a1; margin-bottom: 8px; }
+  .exercise ul { padding-left: 18px; }
+  .exercise li { font-size: 0.87em; color: #0c4a6e; margin-bottom: 4px; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.88em; display: flex; align-items: flex-start; gap: 10px; }
+  .checklist li::before { content: "☐"; font-size: 1em; color: var(--text-sub); flex-shrink: 0; }
+  .checklist li:last-child { border-bottom: none; }
+
+  /* FUNNEL */
+  .funnel { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+  .funnel-stage { border-radius: 8px; padding: 14px 20px; color: white; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .funnel-label { font-weight: 700; font-size: 0.95em; }
+  .funnel-metric { font-size: 12px; opacity: 0.85; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 36px 24px; font-size: 12px; color: var(--text-sub); border-top: 1px solid var(--border); background: white; }
+  .footer a { color: var(--teal); text-decoration: none; }
+
+  /* PILL */
+  .pill { display: inline-block; background: var(--light-bg); border: 1px solid var(--border); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin: 3px; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:640px){ .two-col { grid-template-columns: 1fr; } }
+
+  /* HIGHLIGHT ROW */
+  .highlight-row { background: #fffbeb; border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">職能分析報告 v2 · Training Edition</div>
+  <h1>數位行銷企劃職能全攻略</h1>
+  <p class="sub">Digital Marketing Planner — Complete Competency Framework for Training</p>
+  <div class="version-badge">v2.0 教育訓練增強版</div>
+  <div class="meta">
+    <span>訪談對象：逸達（資深數位行銷顧問）</span>
+    <span>產出日期：2026-06-17</span>
+    <span>適用對象：初入行至資深從業人員</span>
+    <span>用途：教育訓練 / 招募評估 / 個人發展</span>
+  </div>
+</div>
+
+<div class="toc">
+  <a href="#s1">1. 職務本質</a>
+  <a href="#s2">2. 生態系統</a>
+  <a href="#s3">3. 品牌策略</a>
+  <a href="#s4">4. 市場調研</a>
+  <a href="#s5">5. SOP 流程</a>
+  <a href="#s6">6. 職能矩陣</a>
+  <a href="#s7">7. 廣告操作</a>
+  <a href="#s8">8. 數據分析</a>
+  <a href="#s9">9. 內容行銷</a>
+  <a href="#s10">10. AI 工具</a>
+  <a href="#s11">11. 學習路徑</a>
+  <a href="#s12">12. 案例學習</a>
+  <a href="#s13">13. 顧問出報告</a>
+  <a href="#s14">14. KPI 設定</a>
+  <a href="#s15">15. 面試評估</a>
+  <a href="#s16">16. 核心洞見</a>
+</div>
+
+<div class="container">
+
+<!-- KPI 儀表板 -->
+<div class="kpi-row">
+  <div class="kpi"><div class="kpi-val">5+</div><div class="kpi-label">服務企業數（代操）</div></div>
+  <div class="kpi"><div class="kpi-val">12+</div><div class="kpi-label">年度運營計畫書</div></div>
+  <div class="kpi"><div class="kpi-val">3個月</div><div class="kpi-label">成功案例打平週期</div></div>
+  <div class="kpi"><div class="kpi-val">3–5x</div><div class="kpi-label">年度營業成長倍數</div></div>
+  <div class="kpi"><div class="kpi-val">16章</div><div class="kpi-label">本報告涵蓋主題</div></div>
+</div>
+
+<!-- ────────── S1 職務本質 ────────── -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div>
+      <div class="section-title">職務本質與核心定位</div>
+      <div class="section-desc">從「做廣告的」到「品牌策略翻譯者」——理解這個角色的全貌</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    「行銷只是品牌裡面的一環。品牌在做的事是把公司的理念跟產品跟消費者中間做連結——創造價值、傳遞價值。行銷就是傳遞的手段。」
+    <div class="author">— 逸達，資深數位行銷顧問</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">職責三層架構 <span class="badge badge-blue">核心框架</span></div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th style="width:90px">層次</th><th>工作內容</th><th style="width:140px">主要輸出物</th><th style="width:80px">思維類型</th></tr>
+      <tr>
+        <td><strong>策略層</strong></td>
+        <td>品牌定位設定、競品調查、使用者調研，三者取交集找出差異化；確立未來 3–5 年的品牌方向</td>
+        <td>品牌策略文件、定位宣言</td>
+        <td>顧問思維</td>
+      </tr>
+      <tr>
+        <td><strong>企劃層</strong></td>
+        <td>資源分配（預算/人/時間）、管道選擇（YouTube/IG/TikTok/小紅書）、活動設計、時機判斷、網紅媒合規劃</td>
+        <td>年度行銷計畫書、Campaign Brief</td>
+        <td>系統思維</td>
+      </tr>
+      <tr>
+        <td><strong>執行層</strong></td>
+        <td>文案/圖片/影片生成、廣告投放設定、社群日常維護、PDCA 優化循環、報表產製</td>
+        <td>內容素材、廣告報表</td>
+        <td>執行思維</td>
+      </tr>
+    </table>
+    <div class="callout callout-yellow" style="margin-top:14px">
+      <div class="callout-title">⚠️ 常見誤區</div>
+      很多人進入這個領域只停在「執行層」——只會做廣告、排文章。真正有價值的數位行銷人員是「往上滲透到策略層」，能夠從品牌本質出發設計整條路徑。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4P → 4C：從品牌視角到顧客視角</div>
+    <div class="two-col" style="margin-top:8px">
+      <div>
+        <div style="font-weight:700;font-size:0.88em;margin-bottom:8px;color:var(--text-sub)">4P（企業視角）</div>
+        <table class="tbl">
+          <tr><th>P</th><th>問的是</th></tr>
+          <tr><td><strong>Product</strong></td><td>我們賣什麼？</td></tr>
+          <tr><td><strong>Price</strong></td><td>定價多少？</td></tr>
+          <tr><td><strong>Place</strong></td><td>在哪裡賣？</td></tr>
+          <tr><td><strong>Promotion</strong></td><td>怎麼推廣？</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:0.88em;margin-bottom:8px;color:var(--text-sub)">4C（顧客視角）</div>
+        <table class="tbl">
+          <tr><th>C</th><th>問的是</th></tr>
+          <tr><td><strong>Customer Value</strong></td><td>顧客得到什麼價值？</td></tr>
+          <tr><td><strong>Cost</strong></td><td>顧客的總成本？</td></tr>
+          <tr><td><strong>Convenience</strong></td><td>購買方不方便？</td></tr>
+          <tr><td><strong>Communication</strong></td><td>雙向對話了嗎？</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout callout-blue" style="margin-top:14px">
+      <div class="callout-title">📘 訓練提示</div>
+      初學者容易只想「怎麼推廣」（Promotion），真正的行銷高手從「顧客的總成本（Cost）」倒推——買的麻煩越少，轉換率越高。
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">🎯 練習題 1-A：職務本質測驗</div>
+    <ul>
+      <li>請用一句話說明「品牌」和「行銷」的差別是什麼？</li>
+      <li>你目前的工作主要停留在哪個層次（策略/企劃/執行）？往上一層需要補什麼能力？</li>
+      <li>選一個你熟悉的品牌，用 4C 分析它的顧客視角。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S2 生態系統 ────────── -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div>
+      <div class="section-title">數位行銷生態系統 <span class="training-tag">必讀</span></div>
+      <div class="section-desc">平台特性、受眾差異、內容格式——選錯平台等於對錯的人說話</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">主要平台特性比較</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>平台</th><th>主力受眾</th><th>內容類型</th><th>廣告優勢</th><th>適合場景</th></tr>
+      <tr>
+        <td><strong>Facebook / IG</strong></td>
+        <td>25–55 歲，台灣滲透率最高</td>
+        <td>圖文、Reels、Stories、直播</td>
+        <td>精準受眾分眾、再行銷、像素追蹤</td>
+        <td>B2C 品牌、電商、在地商家</td>
+      </tr>
+      <tr>
+        <td><strong>TikTok / 抖音</strong></td>
+        <td>15–35 歲，短影音主戰場</td>
+        <td>15–60 秒短影音</td>
+        <td>演算法自然流量大、破圈能力強</td>
+        <td>快消品、娛樂、個人 IP、爆款單品</td>
+      </tr>
+      <tr>
+        <td><strong>YouTube</strong></td>
+        <td>全年齡，深度內容消費</td>
+        <td>長影片（5–30min）、Shorts</td>
+        <td>搜尋意圖廣告、KOL 深度合作</td>
+        <td>教育類、開箱測評、品牌故事</td>
+      </tr>
+      <tr>
+        <td><strong>小紅書</strong></td>
+        <td>18–35 歲女性為主，消費力強</td>
+        <td>圖文筆記、短影音</td>
+        <td>KOC（素人）口碑、搜尋型購買決策</td>
+        <td>美妝、時尚、食品、旅遊</td>
+      </tr>
+      <tr>
+        <td><strong>LINE</strong></td>
+        <td>台灣全年齡，日常通訊</td>
+        <td>官方帳號訊息、貼圖、優惠券</td>
+        <td>封閉式精準推播</td>
+        <td>回購促進、會員維繫、本地服務</td>
+      </tr>
+      <tr>
+        <td><strong>Google Search</strong></td>
+        <td>有明確搜尋需求的人</td>
+        <td>文字廣告、購物廣告</td>
+        <td>高購買意圖、即時性</td>
+        <td>有需求的服務型消費（整脊/裝潢/補習）</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">平台選擇決策框架 <span class="badge badge-green">應用工具</span></div>
+    <div class="callout callout-blue">
+      <div class="callout-title">四個問題決定主力平台</div>
+      <ol style="padding-left:18px;font-size:0.9em">
+        <li style="margin-bottom:6px"><strong>你的目標客群在哪裡花時間？</strong>（不是你喜歡用哪個平台）</li>
+        <li style="margin-bottom:6px"><strong>你的內容能持續產出嗎？</strong>（短影音需要高頻率、長影片需要高製作力）</li>
+        <li style="margin-bottom:6px"><strong>你的產品適合視覺展示還是搜尋意圖型購買？</strong></li>
+        <li style="margin-bottom:6px"><strong>你的預算支持哪種廣告模式？</strong>（CPM、CPC、CPA 成本差很多）</li>
+      </ol>
+    </div>
+    <div class="highlight-row">💡 逸達原話：「上YouTube比較好、小紅書比較好、TikTok比較好、還是Podcast、論壇跟內容農場？選出來之後，針對每個面，最後回到單點。」</div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">🎯 練習題 2-A：平台選擇練習</div>
+    <ul>
+      <li>假設你代操一家台北的中醫診所，請選出最適合的 2 個主力平台並說明理由。</li>
+      <li>你最近看過哪個品牌的社群經營讓你印象深刻？它的成功你認為是「平台選對」還是「內容做對」？</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S3 品牌策略 ────────── -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div>
+      <div class="section-title">品牌策略基礎</div>
+      <div class="section-desc">沒有品牌基礎的行銷就像沒有地基的房子——外觀再好，颱風來就倒</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">STP 分析框架 <span class="badge badge-blue">策略必備</span></div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th style="width:90px">步驟</th><th>做什麼</th><th>產出</th><th>關鍵問題</th></tr>
+      <tr>
+        <td><strong>S 市場區隔</strong><br>Segmentation</td>
+        <td>把整個市場切成有意義的小塊（依人口、地域、行為、心理）</td>
+        <td>市場地圖</td>
+        <td>市場可以怎麼切？每塊多大？</td>
+      </tr>
+      <tr>
+        <td><strong>T 選定目標</strong><br>Targeting</td>
+        <td>從切出的小塊中選 1–2 個最適合我們的目標族群</td>
+        <td>目標族群定義</td>
+        <td>我們最能服務哪塊？哪塊最有利潤？</td>
+      </tr>
+      <tr>
+        <td><strong>P 市場定位</strong><br>Positioning</td>
+        <td>在目標族群腦中，建立「我是誰、我跟別人有什麼不同」的清晰印象</td>
+        <td>定位宣言</td>
+        <td>我們要佔領顧客心中哪個位置？</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">品牌定位宣言公式</div>
+    <div style="background:var(--light-bg);border-radius:8px;padding:16px 20px;margin-top:8px;font-size:0.9em;line-height:2">
+      <strong style="color:var(--accent)">對於</strong>（目標族群）<br>
+      <strong style="color:var(--accent)">他們面臨</strong>（核心痛點）<br>
+      <strong style="color:var(--accent)">我們是</strong>（品牌名稱／產品品類）<br>
+      <strong style="color:var(--accent)">提供</strong>（核心利益/價值主張）<br>
+      <strong style="color:var(--accent)">不像</strong>（競爭對手）<br>
+      <strong style="color:var(--accent)">因為</strong>（可信賴的差異化依據）
+    </div>
+    <div class="callout callout-red" style="margin-top:12px">
+      <div class="callout-title">❌ 失敗案例教訓（直接來自訪談）</div>
+      化妝品品牌案例：「老闆寫的品牌宣言，放到任何競爭對手身上都適用」= 等於沒有定位。真正的差異化宣言，換到別人身上就不成立。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">品牌聲音（Brand Voice）設定</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>維度</th><th>定義</th><th>範例（兩個極端）</th></tr>
+      <tr><td><strong>正式 ↔ 輕鬆</strong></td><td>說話的語氣</td><td>醫療品牌 vs. 飲料品牌</td></tr>
+      <tr><td><strong>理性 ↔ 感性</strong></td><td>訴求方式</td><td>科技產品 vs. 奢侈品</td></tr>
+      <tr><td><strong>保守 ↔ 大膽</strong></td><td>視覺與文案風格</td><td>銀行 vs. 潮牌</td></tr>
+      <tr><td><strong>通用 ↔ 次文化</strong></td><td>溝通語言深度</td><td>大眾媒體 vs. 二次元社群</td></tr>
+    </table>
+    <div class="callout callout-blue" style="margin-top:12px">
+      <div class="callout-title">📘 訓練提示</div>
+      品牌聲音確定後，所有文案、圖片、客服回覆都要一致。前後不一致的品牌會讓顧客感到「不真實」，降低信任感。
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">🎯 練習題 3-A：品牌定位診斷</div>
+    <ul>
+      <li>找一個你正在服務（或熟悉）的品牌，寫出它的「品牌定位宣言」。</li>
+      <li>把這句宣言改成競爭對手的名字——它還成立嗎？如果還成立，定位沒有差異化，需要重做。</li>
+      <li>描述這個品牌的「品牌聲音」在四個維度上的位置。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S4 市場調研 ────────── -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div>
+      <div class="section-title">市場調研方法論</div>
+      <div class="section-desc">沒有數據的策略是猜測，沒有調研的廣告是賭博</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">三角調研框架 <span class="badge badge-blue">三者取交集的前置作業</span></div>
+    <div class="two-col" style="margin-top:8px">
+      <div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px">
+          <div style="font-weight:700;margin-bottom:6px;color:var(--teal)">① 市場調查（外部視野）</div>
+          <div style="font-size:0.87em;color:var(--text-sub)">
+            <strong>目的：</strong>了解產業整體樣貌<br>
+            <strong>工具：</strong><br>
+            • Google Trends（趨勢走向）<br>
+            • 政府統計資料（市場規模）<br>
+            • 產業報告（IBISWorld、資策會）<br>
+            • 社群聆聽工具（Brandwatch、Mention）<br>
+            <strong>產出：</strong>市場機會地圖
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:14px">
+          <div style="font-weight:700;margin-bottom:6px;color:var(--purple)">② 競評調查（橫向視野）</div>
+          <div style="font-size:0.87em;color:var(--text-sub)">
+            <strong>目的：</strong>找出競爭對手弱點和空位<br>
+            <strong>工具：</strong><br>
+            • 實際購買競品（體驗觀察）<br>
+            • SimilarWeb（流量分析）<br>
+            • 競品廣告庫（Meta Ad Library）<br>
+            • 評論分析（Google Maps、蝦皮評價）<br>
+            <strong>產出：</strong>競爭對手優劣勢矩陣
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:14px;height:100%">
+          <div style="font-weight:700;margin-bottom:6px;color:var(--accent)">③ 使用者調研（深度視野）</div>
+          <div style="font-size:0.87em;color:var(--text-sub)">
+            <strong>目的：</strong>挖掘真實痛點和購買動機<br>
+            <strong>方法：</strong><br>
+            • 深度訪談（1 對 1，至少 5–8 人）<br>
+            • 問卷調查（量化，100 人以上）<br>
+            • 焦點團體（4–8 人同場討論）<br>
+            • 行為觀察（看他們怎麼用，不是聽他們怎麼說）<br>
+            <strong>關鍵問題：</strong><br>
+            • 你做決定前最擔心什麼？<br>
+            • 上次購買這類產品是什麼情況？<br>
+            • 什麼讓你最後選了這家？<br>
+            <strong>產出：</strong>用戶畫像 / 痛點地圖
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">用戶畫像（Persona）建立模板</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>維度</th><th>要填的內容</th><th>獲取方式</th></tr>
+      <tr><td><strong>基本資料</strong></td><td>年齡、性別、職業、居住地、收入區間</td><td>問卷、GA 後台</td></tr>
+      <tr><td><strong>日常習慣</strong></td><td>每天用哪些 App、幾點刷社群、怎麼消費資訊</td><td>深度訪談</td></tr>
+      <tr><td><strong>核心痛點</strong></td><td>他在這個領域最大的困擾是什麼</td><td>訪談+評論分析</td></tr>
+      <tr><td><strong>購買觸發點</strong></td><td>什麼情況下他會開始搜尋/比較產品</td><td>訪談</td></tr>
+      <tr><td><strong>決策障礙</strong></td><td>什麼讓他猶豫、不買的原因</td><td>訪談+客服記錄</td></tr>
+      <tr><td><strong>資訊來源</strong></td><td>他信任哪些人、哪些管道的推薦</td><td>問卷</td></tr>
+    </table>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">🎯 練習題 4-A：競評分析實作</div>
+    <ul>
+      <li>選一個你熟悉的產業，找出前三名競爭者，用「Meta Ad Library」查看他們正在投放的廣告，分析他們的主打訴求。</li>
+      <li>在 Google Maps 上找出競品的負評，整理出「客戶最常抱怨什麼」——這就是你的差異化機會。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S5 SOP 流程 ────────── -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div>
+      <div class="section-title">標準工作流程（SOP）</div>
+      <div class="section-desc">從市場調研到廣告優化的完整路徑，每一步都有明確輸出物</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>三角調研（最重要前置作業，2–4 週）</h4>
+      <p>市場調查 + 競評調查 + 使用者調研，缺一不可。三類資訊的交集才是真正可以發揮的戰場。</p>
+      <ul><li>輸出物：市場機會地圖、競爭對手矩陣、用戶痛點地圖</li></ul>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>品牌定位設定（差異化的門檻，1–2 週）</h4>
+      <p>企業定位 → 品牌定位，確立競爭對手是誰、優勢在哪、要迴避的落象是什麼。</p>
+      <ul><li>輸出物：品牌定位宣言、品牌聲音指南</li><li>⚠️ 這步不過關，後面全部白做</li></ul>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>策略出爐 → 企劃書產出（1–2 週）</h4>
+      <p>三者交集確認 → 決定主打方向 → 資源分配（預算/團隊/外部關係） → 選定最多 2 個主力管道</p>
+      <ul><li>輸出物：年度行銷計畫書（含預算分配表、時間軸）</li></ul>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h4>內容生成（持續進行）</h4>
+      <p>挖出產品最強亮點 → 依管道特性生成文案/圖/影片 → 網紅代言/老闆自媒體/使用者見證</p>
+      <ul>
+        <li>每週固定產出量：至少確保主力平台每週 3–5 則</li>
+        <li>內容行事曆管理：至少提前 2 週排定</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <h4>廣告投放 + 轉換漏斗追蹤</h4>
+      <p>曝光 → 點擊 → 私訊/加入購物車 → 到現場/結帳 → 買套組/回購，每個節點都要追蹤轉換率</p>
+      <ul>
+        <li>關鍵字策略：每 2–3 週調整一次</li>
+        <li>A/B 測試：每次只改一個變數（標題、圖片、受眾擇一）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <h4>PDCA 優化循環（無限迭代）</h4>
+      <p>分析成效 → 找出瓶頸節點 → 調整策略 → 重新執行。這不是階段，而是永久的工作模式。</p>
+      <ul><li>月度報告：每個管道的核心指標 + 下月策略調整建議</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S6 職能矩陣 ────────── -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div>
+      <div class="section-title">職能矩陣</div>
+      <div class="section-desc">按必要程度分層，協助招募評估與個人發展規劃</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px;font-size:13px">
+    <span style="margin-right:16px"><span style="border-left:4px solid var(--accent);padding-left:6px;color:var(--accent);font-weight:700">核心必備</span></span>
+    <span style="margin-right:16px"><span style="border-left:4px solid var(--teal);padding-left:6px;color:var(--teal);font-weight:700">進階強化</span></span>
+    <span style="margin-right:16px"><span style="border-left:4px solid var(--purple);padding-left:6px;color:var(--purple);font-weight:700">顧問層級</span></span>
+    <span><span style="border-left:4px solid var(--gold);padding-left:6px;color:var(--gold);font-weight:700">加分項目</span></span>
+  </div>
+
+  <div class="skill-grid">
+    <div class="skill-item must">
+      <div class="skill-name">品牌策略思維</div>
+      <div class="skill-desc">4P/4C、STP 分析、定位設定、差異化判斷</div>
+      <div class="skill-level" style="color:var(--accent)">▲ 核心必備</div>
+    </div>
+    <div class="skill-item must">
+      <div class="skill-name">市場調研能力</div>
+      <div class="skill-desc">三角調研（市場/競評/用戶），取交集得出可行策略</div>
+      <div class="skill-level" style="color:var(--accent)">▲ 核心必備</div>
+    </div>
+    <div class="skill-item must">
+      <div class="skill-name">GA4 數據分析</div>
+      <div class="skill-desc">流量來源、事件追蹤、轉換目標設定、後台報表解讀</div>
+      <div class="skill-level" style="color:var(--accent)">▲ 核心必備</div>
+    </div>
+    <div class="skill-item must">
+      <div class="skill-name">轉換漏斗分析</div>
+      <div class="skill-desc">每層轉換率追蹤，找出瓶頸節點並提出優化方向</div>
+      <div class="skill-level" style="color:var(--accent)">▲ 核心必備</div>
+    </div>
+    <div class="skill-item must">
+      <div class="skill-name">AI 工具操作</div>
+      <div class="skill-desc">ChatGPT/Claude 文案輔助、Midjourney 圖片、AI 趨勢爬蟲設定</div>
+      <div class="skill-level" style="color:var(--accent)">▲ 核心必備</div>
+    </div>
+    <div class="skill-item must">
+      <div class="skill-name">文案撰寫</div>
+      <div class="skill-desc">標題寫法、CTA 設計、不同平台格式差異、情緒驅動 vs 理性訴求</div>
+      <div class="skill-level" style="color:var(--accent)">▲ 核心必備</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Facebook / IG 廣告</div>
+      <div class="skill-desc">受眾設定、Pixel 安裝、廣告架構（活動/廣告組/廣告）、再行銷</div>
+      <div class="skill-level" style="color:var(--teal)">▲ 進階強化</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Google Ads</div>
+      <div class="skill-desc">搜尋廣告、關鍵字規劃、品質分數優化、再行銷清單</div>
+      <div class="skill-level" style="color:var(--teal)">▲ 進階強化</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">SEO 基礎</div>
+      <div class="skill-desc">關鍵字研究、內容優化、技術 SEO 概念、Google Search Console</div>
+      <div class="skill-level" style="color:var(--teal)">▲ 進階強化</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">趨勢偵測</div>
+      <div class="skill-desc">Google Trends、社群聆聽、AI 爬蟲工具設定，每天固定收訊號</div>
+      <div class="skill-level" style="color:var(--teal)">▲ 進階強化</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">KOL / KOC 媒合</div>
+      <div class="skill-desc">網紅分級（Mega/Macro/Micro/Nano），合約、素材溝通、成效評估</div>
+      <div class="skill-level" style="color:var(--teal)">▲ 進階強化</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">內容行事曆管理</div>
+      <div class="skill-desc">跨平台排程、議題節點佈局、內容複用策略</div>
+      <div class="skill-level" style="color:var(--teal)">▲ 進階強化</div>
+    </div>
+    <div class="skill-item advanced">
+      <div class="skill-name">年度運營規劃</div>
+      <div class="skill-desc">行銷只是其中一章，能整合人才/財務/運營的全局思維</div>
+      <div class="skill-level" style="color:var(--purple)">▲ 顧問層級</div>
+    </div>
+    <div class="skill-item advanced">
+      <div class="skill-name">客戶說服與提案</div>
+      <div class="skill-desc">能讓客戶「願意接受調整」，包含異議處理、信任建立</div>
+      <div class="skill-level" style="color:var(--purple)">▲ 顧問層級</div>
+    </div>
+    <div class="skill-item advanced">
+      <div class="skill-name">流程再造思維</div>
+      <div class="skill-desc">行銷是流程的一環，懂如何與業務/客服/產品串接形成閉環</div>
+      <div class="skill-level" style="color:var(--purple)">▲ 顧問層級</div>
+    </div>
+    <div class="skill-item bonus">
+      <div class="skill-name">跨範疇廣度</div>
+      <div class="skill-desc">展覽/二次元/cosplay/運動——任何跨領域接觸都是創意來源</div>
+      <div class="skill-level" style="color:var(--gold)">★ 加分項目</div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S7 廣告操作 ────────── -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div>
+      <div class="section-title">數位廣告深度指南 <span class="training-tag">實操核心</span></div>
+      <div class="section-desc">廣告是工具，不是策略——在對的時間、對的地方、對的人面前說對的話</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">廣告架構通用概念</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;margin-bottom:12px">
+      <div style="flex:1;min-width:140px;background:#f0f9ff;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px">TOFU（漏斗頂部）</div>
+        <div style="font-weight:700;color:#0369a1">品牌認知</div>
+        <div style="font-size:12px;color:var(--text-sub)">觸及、曝光、影片觀看</div>
+      </div>
+      <div style="flex:1;min-width:140px;background:#f0fdf4;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px">MOFU（漏斗中部）</div>
+        <div style="font-weight:700;color:#166534">考慮互動</div>
+        <div style="font-size:12px;color:var(--text-sub)">流量、互動、潛在客戶</div>
+      </div>
+      <div style="flex:1;min-width:140px;background:#fff1f2;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px">BOFU（漏斗底部）</div>
+        <div style="font-weight:700;color:#9f1239">轉換購買</div>
+        <div style="font-size:12px;color:var(--text-sub)">轉換、目錄、再行銷</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-title">💡 逸達投放時機觀點</div>
+      「先佈了局、創造話題，話題一爆上來的時候廣告給他下下去——這叫做對的時機做對的事情。」話題發酵期下廣告，CPM（每千次展示成本）最低、轉換率最高。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Meta 廣告（Facebook / IG）操作要點</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>項目</th><th>重點說明</th><th>新手常犯錯誤</th></tr>
+      <tr>
+        <td><strong>像素安裝</strong></td>
+        <td>網站必裝 Meta Pixel，追蹤訪客行為、建立再行銷清單</td>
+        <td>沒裝就投廣告，數據全部流失</td>
+      </tr>
+      <tr>
+        <td><strong>受眾設定</strong></td>
+        <td>核心受眾（興趣）→ 自訂受眾（官網訪客/名單）→ 類似受眾（1–3%）</td>
+        <td>只用興趣受眾，從不做再行銷</td>
+      </tr>
+      <tr>
+        <td><strong>廣告架構</strong></td>
+        <td>活動（預算目標）→ 廣告組（受眾/版位）→ 廣告（創意素材）</td>
+        <td>一個廣告組塞太多廣告，演算法分不清楚</td>
+      </tr>
+      <tr>
+        <td><strong>素材測試</strong></td>
+        <td>每次只改一個變數（圖片或文案）、至少跑 7 天再評估</td>
+        <td>3 天就關掉「沒效果」的廣告</td>
+      </tr>
+      <tr>
+        <td><strong>預算建議</strong></td>
+        <td>每個廣告組日預算至少是目標 CPA 的 5 倍，讓演算法有學習空間</td>
+        <td>預算太低，演算法無法脫離學習階段</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Google Ads 操作要點</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>廣告類型</th><th>適用場景</th><th>關鍵優化點</th></tr>
+      <tr><td><strong>搜尋廣告</strong></td><td>有明確搜尋意圖（「台北整脊推薦」）</td><td>關鍵字比對類型、品質分數、廣告延伸</td></tr>
+      <tr><td><strong>多媒體廣告</strong></td><td>品牌曝光、再行銷追蹤</td><td>受眾分層、版位排除、頻率控制</td></tr>
+      <tr><td><strong>購物廣告</strong></td><td>電商、有實體商品</td><td>產品 Feed 優化、標題關鍵字</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">廣告預算分配框架</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px">
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px;text-align:center">
+        <div style="font-size:1.4em;font-weight:700;color:var(--teal)">70%</div>
+        <div style="font-size:0.85em;color:var(--text-sub)">已驗證的有效管道和受眾</div>
+      </div>
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px;text-align:center">
+        <div style="font-size:1.4em;font-weight:700;color:var(--purple)">20%</div>
+        <div style="font-size:0.85em;color:var(--text-sub)">有潛力的新方向測試</div>
+      </div>
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px;text-align:center">
+        <div style="font-size:1.4em;font-weight:700;color:var(--gold)">10%</div>
+        <div style="font-size:0.85em;color:var(--text-sub)">實驗性嘗試（可以失敗）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S8 數據分析 ────────── -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div>
+      <div class="section-title">數據分析與報表</div>
+      <div class="section-desc">數字不說謊，但你要先知道看哪個數字</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">轉換漏斗關鍵指標（以服務型業務為例）</div>
+    <div class="funnel" style="margin-top:8px">
+      <div class="funnel-stage" style="background:#1d4ed8">
+        <span class="funnel-label">曝光（Impression）</span>
+        <span class="funnel-metric">看廣告的人數 · 指標：CPM（每千次展示成本）</span>
+      </div>
+      <div class="funnel-stage" style="background:#0369a1">
+        <span class="funnel-label">點擊（Click）</span>
+        <span class="funnel-metric">點進來的人 · 指標：CTR（點擊率）/ CPC（每次點擊成本）</span>
+      </div>
+      <div class="funnel-stage" style="background:#0891b2">
+        <span class="funnel-label">私訊 / 詢問</span>
+        <span class="funnel-metric">開口問的人 · 指標：詢問率 / CPL（每次取得潛在客戶成本）</span>
+      </div>
+      <div class="funnel-stage" style="background:#0f7173">
+        <span class="funnel-label">到場 / 預約</span>
+        <span class="funnel-metric">真的出現的人 · 指標：Show-up Rate</span>
+      </div>
+      <div class="funnel-stage" style="background:#059669">
+        <span class="funnel-label">首次成交</span>
+        <span class="funnel-metric">買單的人 · 指標：成交率 / CAC（獲客成本）</span>
+      </div>
+      <div class="funnel-stage" style="background:#16a34a">
+        <span class="funnel-label">套組 / 回購</span>
+        <span class="funnel-metric">買更多的人 · 指標：LTV（客戶終身價值）/ 回購率</span>
+      </div>
+    </div>
+    <div class="callout callout-yellow" style="margin-top:12px">
+      <div class="callout-title">💡 逸達核心觀點</div>
+      「我必須選定最適合的路徑……然後針對每個面，最後就回到單點——知道轉換率被什麼影響，看得出成功跟失敗的因素，生成調整策略。」真正的價值不是看懂數字，是知道「為什麼轉換率低」以及「改什麼能提升」。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">常用分析工具清單</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>工具</th><th>用途</th><th>免費/付費</th></tr>
+      <tr><td><strong>Google Analytics 4</strong></td><td>網站流量、事件追蹤、轉換分析、受眾報表</td><td>免費</td></tr>
+      <tr><td><strong>Google Search Console</strong></td><td>自然搜尋表現、關鍵字排名、點擊率</td><td>免費</td></tr>
+      <tr><td><strong>Meta Business Suite</strong></td><td>FB/IG 廣告成效、粉絲數據、觸及分析</td><td>免費</td></tr>
+      <tr><td><strong>Google Trends</strong></td><td>關鍵字趨勢走向、地區熱度比較</td><td>免費</td></tr>
+      <tr><td><strong>SimilarWeb</strong></td><td>競品網站流量估算、流量來源分析</td><td>免費（有限）</td></tr>
+      <tr><td><strong>Hotjar</strong></td><td>網頁熱力圖、用戶行為錄製、轉換瓶頸找原因</td><td>免費起步</td></tr>
+    </table>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">🎯 練習題 8-A：漏斗診斷練習</div>
+    <ul>
+      <li>假設廣告 CTR 是 3%（還不錯），但私訊率只有 0.5%（很低）——問題在哪個環節？你會優先改什麼？</li>
+      <li>如果成交率是 30%，但回購率只有 10%——這說明什麼問題？行銷能解決嗎？</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S9 內容行銷 ────────── -->
+<div class="section" id="s9">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div>
+      <div class="section-title">內容行銷策略</div>
+      <div class="section-desc">內容是資產，廣告是租來的流量——好的內容能帶來永久複利</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">內容類型與平台適配</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>內容類型</th><th>適合平台</th><th>製作門檻</th><th>效益週期</th></tr>
+      <tr><td><strong>短影音（15–60 秒）</strong></td><td>TikTok、IG Reels、YouTube Shorts</td><td>中（需剪輯）</td><td>短（快速爆發）</td></tr>
+      <tr><td><strong>長影音（5–30 分）</strong></td><td>YouTube</td><td>高（拍攝+剪輯+腳本）</td><td>長（搜尋長尾流量）</td></tr>
+      <tr><td><strong>圖文筆記</strong></td><td>小紅書、FB、IG</td><td>低（文字+簡單設計）</td><td>中</td></tr>
+      <tr><td><strong>部落格文章</strong></td><td>官網、Medium</td><td>中（寫作能力）</td><td>長（SEO 複利）</td></tr>
+      <tr><td><strong>直播</strong></td><td>FB、YouTube、TikTok</td><td>低（即時性）</td><td>短（當下互動）</td></tr>
+      <tr><td><strong>Podcast</strong></td><td>Spotify、Apple Podcast</td><td>中（錄音+剪輯）</td><td>長（忠誠聽眾）</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">內容行事曆架構</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:8px">
+      <div style="background:#eff6ff;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:0.9em;color:#1d4ed8">每日</div>
+        <div style="font-size:12px;color:var(--text-sub);margin-top:4px">限時動態、社群互動回覆、觀察趨勢</div>
+      </div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:0.9em;color:#166534">每週</div>
+        <div style="font-size:12px;color:var(--text-sub);margin-top:4px">主力貼文 3–5 則、廣告效果檢視</div>
+      </div>
+      <div style="background:#fef3c7;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:0.9em;color:#92400e">每月</div>
+        <div style="font-size:12px;color:var(--text-sub);margin-top:4px">主題 Campaign、KOL 合作發文、月報</div>
+      </div>
+      <div style="background:#ede9fe;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:0.9em;color:#5b21b6">季度</div>
+        <div style="font-size:12px;color:var(--text-sub);margin-top:4px">策略回顧、競品分析更新、下季規劃</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">高流量內容的三個共同特徵</div>
+    <div style="margin-top:8px">
+      <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:4px">① 解決「剛好在搜尋這個」的問題</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">不是你想說什麼，而是他在搜尋什麼。先用 Google Trends + 搜尋建議找出「高量關鍵字」，再創作對應內容。</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:4px">② 強開頭（前 3 秒決定生死）</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">短影音的前 3 秒、部落格的標題和第一段——這決定了他要不要繼續看。好的開頭公式：痛點直擊 / 數字衝擊 / 爭議性觀點。</div>
+      </div>
+      <div style="padding:12px 0">
+        <div style="font-weight:700;margin-bottom:4px">③ 有明確的下一步（CTA）</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">每則內容結尾都要有引導——「私訊我拿免費方案」「點右上角連結預約」「收藏備用」。沒有 CTA 的內容就像在黑暗中遞名片。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S10 AI 工具 ────────── -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div>
+      <div class="section-title">AI 工具整合應用 <span class="training-tag">2026 必備</span></div>
+      <div class="section-desc">AI 是放大器——放大你的判斷力，不是取代你的判斷力</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">行銷人員必備 AI 工具清單</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>用途</th><th>推薦工具</th><th>實際應用</th></tr>
+      <tr>
+        <td><strong>文案生成</strong></td>
+        <td>Claude / ChatGPT / Copilot</td>
+        <td>廣告標題 A/B 測試版本、不同平台格式轉換、eDM 初稿</td>
+      </tr>
+      <tr>
+        <td><strong>圖片生成</strong></td>
+        <td>Midjourney / DALL-E / Canva AI</td>
+        <td>廣告素材備選、活動視覺草案、社群圖片快速產出</td>
+      </tr>
+      <tr>
+        <td><strong>影片剪輯</strong></td>
+        <td>CapCut / Runway / HeyGen</td>
+        <td>短影音字幕、AI 旁白、影片重新剪輯</td>
+      </tr>
+      <tr>
+        <td><strong>趨勢監控</strong></td>
+        <td>Claude Agent / AI 爬蟲腳本</td>
+        <td>每天早上自動收集高流量文章、找出正在發燒的話題</td>
+      </tr>
+      <tr>
+        <td><strong>數據分析</strong></td>
+        <td>Claude / ChatGPT + CSV 上傳</td>
+        <td>廣告報表解讀、競品評論整理分析</td>
+      </tr>
+    </table>
+    <div class="quote" style="margin-top:14px">
+      「現在不會 AI，我可能都不太想用，那會直接反映在工作精準度跟效率。但工具只是加速跟放大，掌握方向跟下在對的時間做對的決策，這兩件事比較不容易被取代。」
+      <div class="author">— 逸達，關於 AI 在行銷中的角色</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">AI 趨勢監控流程（逸達建議的做法）</div>
+    <div class="step" style="margin-top:8px">
+      <div class="step-num" style="width:32px;height:32px;font-size:12px">1</div>
+      <div class="step-content">
+        <h4>設定你的監控關鍵字</h4>
+        <p>你服務的產業 + 目標族群的語言（例如：「台北整脊推薦」「脖子痠痛怎麼辦」）</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="width:32px;height:32px;font-size:12px">2</div>
+      <div class="step-content">
+        <h4>AI Agent 每天自動爬高流量文章</h4>
+        <p>各大社群、論壇、媒體上流量最高的相關文章 → 自動彙整成每日簡報</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="width:32px;height:32px;font-size:12px">3</div>
+      <div class="step-content">
+        <h4>反推廣告關鍵字策略</h4>
+        <p>找出爆款文章的共同主題 → 設定對應關鍵字下廣告，趨近趨勢方向</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="width:32px;height:32px;font-size:12px">4</div>
+      <div class="step-content">
+        <h4>你自己每天「要去看」</h4>
+        <p>AI 只能幫你收集，判斷趨勢走向還是人的工作。每天 15 分鐘翻閱，培養敏銳度。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S11 學習路徑 ────────── -->
+<div class="section" id="s11">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div>
+      <div class="section-title">從業人員學習路徑</div>
+      <div class="section-desc">每個階段都有清楚的里程碑——知道現在在哪，才能知道下一步去哪</div>
+    </div>
+  </div>
+
+  <div class="path-grid">
+    <div class="path-card">
+      <div class="path-header l1">L1 初階（0–2年）<br><small style="font-weight:400;font-size:0.85em">打好地基 · 建立執行力</small></div>
+      <div class="path-body">
+        <div class="path-item">學懂 4P/4C、STP 品牌定位理論</div>
+        <div class="path-item">會看 GA4 後台，讀得懂基本流量報表</div>
+        <div class="path-item">完整代操一個社群平台（從貼文到廣告）</div>
+        <div class="path-item">學會用 AI 工具輔助文案和圖片生成</div>
+        <div class="path-item">了解 FB/IG 廣告基本投放邏輯</div>
+        <div class="path-item">每天固定追蹤一個產業趨勢（養成習慣）</div>
+        <div class="path-item">參加 Meta Blueprint 免費認證課程</div>
+      </div>
+    </div>
+    <div class="path-card">
+      <div class="path-header l2">L2 中階（2–5年）<br><small style="font-weight:400;font-size:0.85em">策略整合 · 建立獨立操盤力</small></div>
+      <div class="path-body">
+        <div class="path-item">能獨立做三角調研（市場/競評/用戶）</div>
+        <div class="path-item">能寫完整年度行銷計畫書（含預算分配）</div>
+        <div class="path-item">操盤跨平台整合 Campaign，追蹤每層轉換率</div>
+        <div class="path-item">能判斷投放時機（議題佈局→爆點下廣告）</div>
+        <div class="path-item">協助品牌設定人設、打造個人 IP</div>
+        <div class="path-item">建立 KOL 合作 SOP（媒合/合約/成效評估）</div>
+        <div class="path-item">能用數據診斷問題並說服客戶調整策略</div>
+      </div>
+    </div>
+    <div class="path-card">
+      <div class="path-header l3">L3 資深／顧問（5年+）<br><small style="font-weight:400;font-size:0.85em">系統思維 · 成為客戶的決策夥伴</small></div>
+      <div class="path-body">
+        <div class="path-item">能主導品牌定位，不只做行銷執行層</div>
+        <div class="path-item">嫻熟三者取交集框架，出顧問報告</div>
+        <div class="path-item">能寫全年度運營計畫書（行銷只是其中一章）</div>
+        <div class="path-item">能識別「定位沒差異化」的根本問題並說服客戶</div>
+        <div class="path-item">建立流程再造思維，讓行銷系統化可複製</div>
+        <div class="path-item">管理顧問能力：提問、診斷、接案前風險評估</div>
+        <div class="path-item">培育下一代行銷人才，建立 SOP 文件</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">自我評估清單 <span class="badge badge-blue">每季填一次</span></div>
+    <ul class="checklist">
+      <li>我能不能在 10 分鐘內說清楚「這個品牌跟競品的差異在哪」？</li>
+      <li>我能不能獨立設計一份完整的轉換漏斗（從曝光到回購）並設定各層 KPI？</li>
+      <li>上個月我調整了廣告策略，有沒有做數據驗證是不是真的有效？</li>
+      <li>我能不能說出這個產業目前最熱的三個話題（不用 Google 就能說）？</li>
+      <li>我最近有沒有主動去看展覽、參加活動、接觸新的次文化？</li>
+      <li>我會不會用 AI 工具加速我的工作（文案/圖片/趨勢監控）？</li>
+      <li>我能不能說服客戶「調整他原本想做的方向」？</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S12 案例學習 ────────── -->
+<div class="section" id="s12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div>
+      <div class="section-title">案例學習：成功 vs 失敗的關鍵差異</div>
+      <div class="section-desc">真實戰場的觀察，比教科書有料</div>
+    </div>
+  </div>
+
+  <div class="case-grid">
+    <div class="card case-success">
+      <div style="font-weight:700;font-size:1em;margin-bottom:10px;color:var(--green)">✅ 成功案例：美式整脊</div>
+      <div style="font-size:0.88em;color:var(--text-sub);margin-bottom:12px">
+        留美格鬥選手取得整脊執照回台創業。先做人設定位研究，確認市場上無類似定位後，設定清晰品牌形象（外國人味道的亞洲人、幽默風趣、大鬍子個性化），規劃粉專方向，精心計算完整轉換漏斗。
+      </div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-weight:700;font-size:0.88em;color:var(--green)">📈 成果</div>
+        <div style="font-size:0.87em;color:var(--text-sub);margin-top:4px">三個月打平、一年營業翻 2–4 倍、月收入 300–500 萬、開始展店</div>
+      </div>
+      <table class="tbl" style="font-size:0.85em">
+        <tr><th>成功因素</th><th>細節</th></tr>
+        <tr><td>老闆心態開放</td><td>願意調整、願意聽專業意見</td></tr>
+        <tr><td>品牌定位獨特</td><td>市場上找不到第二個同樣定位</td></tr>
+        <tr><td>三者交集精準</td><td>品牌力/競爭空位/客戶痛點完美對齊</td></tr>
+        <tr><td>完整漏斗設計</td><td>每個節點都有量化目標</td></tr>
+      </table>
+    </div>
+    <div class="card case-fail">
+      <div style="font-weight:700;font-size:1em;margin-bottom:10px;color:var(--accent)">❌ 失敗案例：化妝品品牌</div>
+      <div style="font-size:0.88em;color:var(--text-sub);margin-bottom:12px">
+        老闆完成品牌宣言後，內容換到任何競爭對手身上都適用——沒有差異化、沒有獨特性。來回五次仍定不出來，最後虛寫一個「演戲版本」，老闆團隊無法內化，文字味道跑掉。
+      </div>
+      <div style="background:#fff1f2;border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-weight:700;font-size:0.88em;color:var(--accent)">📉 結果</div>
+        <div style="font-size:0.87em;color:var(--text-sub);margin-top:4px">只提升 20–30%，廣告停了業績歸零，無法建立口碑和回購</div>
+      </div>
+      <table class="tbl" style="font-size:0.85em">
+        <tr><th>失敗根因</th><th>細節</th></tr>
+        <tr><td>定位通用化陷阱</td><td>品牌宣言換到競品身上也成立</td></tr>
+        <tr><td>老闆不配合調整</td><td>已有固定想法，只想找人執行</td></tr>
+        <tr><td>內化失敗</td><td>定位不是老闆內在的，無法一致執行</td></tr>
+        <tr><td>廣告依賴</td><td>治標不治本，根本問題未解決</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">🎯 練習題 12-A：案例深度分析</div>
+    <ul>
+      <li>「美式整脊」成功，如果老闆當初不願意調整，你有什麼辦法讓他願意聽？</li>
+      <li>「化妝品品牌」失敗，你作為顧問，在接案前有沒有機會識別這個風險？評估哪些信號？</li>
+      <li>你自己服務過（或觀察過）的案例中，哪個最類似成功案例？哪個最類似失敗案例？</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ────────── S13 顧問出報告 ────────── -->
+<div class="section" id="s13">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div>
+      <div class="section-title">專業顧問如何出報告</div>
+      <div class="section-desc">報告是思考過程的呈現，不是結果的堆疊</div>
+    </div>
+  </div>
+
+  <div class="framework-box">
+    <h3>三者取交集框架（顧問報告骨架）</h3>
+    <div class="fi-label">Phase 1 — 資料蒐集（1–2 週）</div>
+    <div class="fi-content"><ul>
+      <li>市場調查：產業規模、成長趨勢、主流管道分析、AI 爬蟲高流量主題</li>
+      <li>競評調查：前三名競品定位、優劣勢、廣告策略（用 Meta Ad Library 查）</li>
+      <li>使用者調研：至少 5 人深度訪談，焦點在「痛點」「決策障礙」「資訊來源」</li>
+    </ul></div>
+    <div class="fi-label">Phase 2 — 三者取交集（1 週）</div>
+    <div class="fi-content"><ul>
+      <li>品牌能力圈：我們能做到什麼、我們的核心優勢是什麼</li>
+      <li>競爭空位：競品沒做到的地方、可以躲開的戰場</li>
+      <li>客戶真實痛點：客戶真正要什麼、什麼問題還沒被解決</li>
+      <li>→ 三者交集 = 唯一應該主打的定位</li>
+    </ul></div>
+    <div class="fi-label">Phase 3 — 策略與執行計畫（1 週）</div>
+    <div class="fi-content"><ul>
+      <li>管道選擇（最多 2 個主力，理由要清楚說明）</li>
+      <li>預算分配（70% 驗證 / 20% 測試 / 10% 實驗）</li>
+      <li>轉換漏斗各層量化目標（曝光→詢問→成交→回購）</li>
+      <li>內容計畫（主題方向 + 發布頻率 + 責任分工）</li>
+      <li>時間軸與里程碑（90 天計畫 + 季度回顧節點）</li>
+    </ul></div>
+    <div class="fi-label">Phase 4 — 成效追蹤與 PDCA</div>
+    <div class="fi-content"><ul>
+      <li>每 2–3 週：廣告關鍵字策略調整</li>
+      <li>每月：各層轉換率回顧，找出最差的那一層優先優化</li>
+      <li>每季：整體策略回顧，確認定位是否還有競爭力</li>
+    </ul></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">顧問報告結構模板 <span class="badge badge-green">可直接使用</span></div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th style="width:40px">#</th><th>章節</th><th>內容重點</th><th style="width:80px">頁數建議</th></tr>
+      <tr><td>1</td><td>執行摘要</td><td>三個最重要的洞見 + 核心建議（給老闆 30 秒看完）</td><td>1 頁</td></tr>
+      <tr><td>2</td><td>市場現況分析</td><td>產業規模、趨勢、機會與威脅</td><td>2–3 頁</td></tr>
+      <tr><td>3</td><td>競爭環境分析</td><td>前三名競品矩陣、空位在哪</td><td>2–3 頁</td></tr>
+      <tr><td>4</td><td>目標客群畫像</td><td>Persona、痛點、購買路徑</td><td>2 頁</td></tr>
+      <tr><td>5</td><td>品牌定位建議</td><td>三者交集、定位宣言、品牌聲音</td><td>2 頁</td></tr>
+      <tr><td>6</td><td>行銷策略規劃</td><td>管道選擇理由、預算分配、90 天計畫</td><td>3–4 頁</td></tr>
+      <tr><td>7</td><td>KPI 框架</td><td>每層轉換率目標、月度追蹤指標</td><td>1–2 頁</td></tr>
+      <tr><td>8</td><td>附錄</td><td>原始調研數據、競品廣告截圖</td><td>視需要</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ────────── S14 KPI 設定 ────────── -->
+<div class="section" id="s14">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div>
+      <div class="section-title">KPI 設定框架</div>
+      <div class="section-desc">沒有量化目標的行銷，就是在猜測——而且猜了也不知道對錯</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">北極星指標選擇原則</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>業務類型</th><th>北極星指標</th><th>追蹤頻率</th></tr>
+      <tr><td><strong>服務型（整脊/診所）</strong></td><td>每月新增預約數 / 套組成交率</td><td>週</td></tr>
+      <tr><td><strong>電商</strong></td><td>ROAS（廣告回收比）/ 客單價 / 回購率</td><td>日</td></tr>
+      <tr><td><strong>品牌認知期</strong></td><td>自然搜尋品牌關鍵字量 / 社群提及次數</td><td>月</td></tr>
+      <tr><td><strong>內容創作者</strong></td><td>訂閱成長率 / 每則觸及 / 互動率</td><td>週</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">漏斗各層 KPI 設定模板</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>漏斗層</th><th>關鍵指標</th><th>健康基準（服務業參考）</th></tr>
+      <tr><td>曝光層</td><td>CPM、觸及人數</td><td>CPM ＜ NT$50（台灣市場）</td></tr>
+      <tr><td>點擊層</td><td>CTR、CPC</td><td>CTR ＞ 1%（冷受眾）/ ＞ 3%（再行銷）</td></tr>
+      <tr><td>詢問層</td><td>私訊率、CPL</td><td>詢問率 ＞ 2%（以點擊為分母）</td></tr>
+      <tr><td>預約層</td><td>預約完成率</td><td>詢問→預約 ＞ 30%</td></tr>
+      <tr><td>成交層</td><td>成交率、CAC</td><td>預約→成交 ＞ 60%</td></tr>
+      <tr><td>回購層</td><td>回購率、LTV</td><td>3 個月內回購率 ＞ 40%（健康服務業）</td></tr>
+    </table>
+    <div class="callout callout-yellow" style="margin-top:12px">
+      <div class="callout-title">📌 重要提醒</div>
+      上述基準僅供參考，不同產業、不同客單價、不同行銷階段會有巨大差異。重點是建立自己的「歷史基準」，比上個月進步才是真正有意義的指標。
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S15 面試評估 ────────── -->
+<div class="section" id="s15">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div>
+      <div class="section-title">面試評估框架 <span class="training-tag">招募用</span></div>
+      <div class="section-desc">找到真正有能力的人，而不只是說得好聽的人</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">面試評估量表（附問題設計）</div>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>評估維度</th><th>面試問題</th><th>評分重點</th><th>權重</th></tr>
+      <tr>
+        <td><strong>趨勢敏銳度</strong></td>
+        <td>「你正在服務的產業，最近三個月最熱的話題是什麼？為什麼？」</td>
+        <td>能不能不假思索說出具體內容，而不是泛泛而談</td>
+        <td><span class="weight w-high">核心必要</span></td>
+      </tr>
+      <tr>
+        <td><strong>投放時機判斷</strong></td>
+        <td>「假設某個話題正在發酵，你怎麼決定什麼時候下廣告？」</td>
+        <td>有沒有「話題爆點 → 搭勢下廣告」的思維，而不是「預算到了就下」</td>
+        <td><span class="weight w-high">核心必要</span></td>
+      </tr>
+      <tr>
+        <td><strong>AI 工具熟練度</strong></td>
+        <td>「你平常用什麼 AI 工具？給我示範一下你怎麼用它做某件事。」</td>
+        <td>有沒有真的在用、用的深不深、會不會設計 prompt</td>
+        <td><span class="weight w-high">核心必要</span></td>
+      </tr>
+      <tr>
+        <td><strong>數據解讀能力</strong></td>
+        <td>「廣告 CTR 3% 但成交率只有 1%，你覺得問題在哪？」</td>
+        <td>能不能系統性找瓶頸，而不是直覺猜測</td>
+        <td><span class="weight w-high">核心必要</span></td>
+      </tr>
+      <tr>
+        <td><strong>品牌思維深度</strong></td>
+        <td>「選一個你最欣賞的品牌，說說它的差異化在哪裡」</td>
+        <td>能不能說出真正的差異化，而不是「設計很好看」「廣告很有創意」</td>
+        <td><span class="weight w-mid">重要</span></td>
+      </tr>
+      <tr>
+        <td><strong>跨範疇廣度</strong></td>
+        <td>「你最近去了哪些展覽、活動、或接觸了哪些你平常不碰的圈子？」</td>
+        <td>觀察是主動的還是被問到才想到的</td>
+        <td><span class="weight w-mid">加分</span></td>
+      </tr>
+      <tr>
+        <td><strong>失敗反思能力</strong></td>
+        <td>「說一個你操盤過、結果最差的案例，你覺得真正的原因是什麼？」</td>
+        <td>能不能誠實反思、找到根本原因，而不是把責任推給客戶或市場</td>
+        <td><span class="weight w-mid">加分</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">快速識別「口說派」vs「實做派」</div>
+    <div class="two-col" style="margin-top:8px">
+      <div style="background:#fff1f2;border-radius:8px;padding:14px">
+        <div style="font-weight:700;margin-bottom:8px;color:var(--accent)">❌ 口說派的信號</div>
+        <ul style="padding-left:16px;font-size:0.87em;color:var(--text-sub)">
+          <li style="margin-bottom:4px">說很多理論但給不出具體數字</li>
+          <li style="margin-bottom:4px">成功案例全都是「幫公司做的」，自己沒有自媒體或作品</li>
+          <li style="margin-bottom:4px">問起 AI 工具，說「有用但說不清楚怎麼用」</li>
+          <li style="margin-bottom:4px">失敗案例的原因都是「客戶不配合」「預算不夠」</li>
+        </ul>
+      </div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:14px">
+        <div style="font-weight:700;margin-bottom:8px;color:var(--green)">✅ 實做派的信號</div>
+        <ul style="padding-left:16px;font-size:0.87em;color:var(--text-sub)">
+          <li style="margin-bottom:4px">能說出具體的轉換率數字和優化過程</li>
+          <li style="margin-bottom:4px">有自己的社群帳號或個人作品可以展示</li>
+          <li style="margin-bottom:4px">示範 AI 工具的時候有自己的 prompt 模板</li>
+          <li style="margin-bottom:4px">說失敗案例的時候，能說出「我應該在哪一步做不同的選擇」</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── S16 核心洞見 ────────── -->
+<div class="section" id="s16">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <div>
+      <div class="section-title">核心洞見與關鍵警示</div>
+      <div class="section-desc">從訪談萃取的高密度判斷點，以及進入這個行業你必須知道的真相</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ 最容易踩的五個雷 <span class="badge badge-red">顧問必讀</span></div>
+    <div style="margin-top:10px">
+      <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:4px">1. 品牌定位「通用化」陷阱</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">客戶寫的品牌宣言換到任何競爭對手都適用 = 等於沒有定位。顧問必須在這步強力把關——「模糊感覺不錯」是最危險的狀態。</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:4px">2. 廣告依賴型業績</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">沒下廣告就沒業績 = 根本問題沒解決。廣告只是燃料，不是引擎。真正的業績靠的是「消費者問題真正被解決」產生的口碑和回購。</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:4px">3. 接案前沒有評估「客戶調整意願」</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">老闆已有固定想法、只想找人執行，這種客戶風險極高。應在接案前確認：「如果我建議調整方向，你願意嘗試嗎？」這個答案決定合作的天花板。</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:4px">4. 平台選擇跟著感覺走</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">「大家都在做 TikTok 所以我們也要做」——這是最常見的資源浪費。平台選擇必須從「目標客群在哪裡」出發，而不是「哪個平台最熱門」。</div>
+      </div>
+      <div style="padding:12px 0">
+        <div style="font-weight:700;margin-bottom:4px">5. 把廣告成效歸因搞錯</div>
+        <div style="font-size:0.88em;color:var(--text-sub)">業績下滑就怪廣告投不好，業績上升就說廣告做對了——大多數時候，業績由「整體市場、季節因素、競品動作、定價策略」共同決定。廣告只是其中一塊。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote">
+    「掌握方向跟下在對的時間做對的決策，這兩件事比較不容易被 AI 取代。工具只是加速跟放大，方向判斷還是人的責任。」
+    <div class="author">— 逸達，關於 AI 取代數位行銷人員的看法</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">這個行業最值得長期培養的能力</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px">
+        <div style="font-weight:700;margin-bottom:6px">🎯 方向感（AI 很難取代）</div>
+        <div style="font-size:0.87em;color:var(--text-sub)">知道「現在要往哪裡打」——這是從市場調研、競品分析、趨勢觀察中長期累積出來的直覺。</div>
+      </div>
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px">
+        <div style="font-weight:700;margin-bottom:6px">⏰ 時機感（AI 很難取代）</div>
+        <div style="font-size:0.87em;color:var(--text-sub)">知道「什麼時候出手」——話題爆點、季節節點、競品空窗期，這需要長時間觀察才能養成。</div>
+      </div>
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px">
+        <div style="font-weight:700;margin-bottom:6px">🤝 說服力（AI 很難取代）</div>
+        <div style="font-size:0.87em;color:var(--text-sub)">讓客戶願意調整方向、願意相信數據而不是感覺——這是最值錢的顧問能力。</div>
+      </div>
+      <div style="background:var(--light-bg);border-radius:8px;padding:14px">
+        <div style="font-weight:700;margin-bottom:6px">🔬 問題定義能力（AI 很難取代）</div>
+        <div style="font-size:0.87em;color:var(--text-sub)">很多客戶帶來的「問題」其實不是真正的問題。能在開始行動前先把真正的問題定義清楚，是最稀缺的能力。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p style="margin-bottom:6px">
+    <strong>數位行銷企劃職能全攻略 v2.0 教育訓練版</strong>
+  </p>
+  <p>訪談對象：逸達（資深數位行銷顧問）· 由 MUSEON AI 系統根據深度訪談逐字稿分析產出 · 2026-06-17</p>
+  <p style="margin-top:6px;color:#9ca3af">本報告版權歸屬原始訪談製作方，僅供教育訓練用途</p>
+</div>
+
+</body>
+</html>
