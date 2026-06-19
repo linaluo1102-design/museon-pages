@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會議記錄｜汎樂創意｜2026-06-17</title>
+<style>
+  :root {
+    --accent: #4A7C59;
+    --accent-light: #E8F4EC;
+    --warn: #C0392B;
+    --warn-light: #FDEDEC;
+    --blue: #2E4482;
+    --blue-light: #EAF0FB;
+    --gray: #6C757D;
+    --bg: #F9FAFB;
+    --card: #FFFFFF;
+    --border: #E5E7EB;
+    --text: #1A1A2E;
+    --text-sec: #555;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--accent) 0%, #2E6B40 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 6px; }
+  .header .meta { font-size: 0.9rem; opacity: 0.85; display: flex; gap: 20px; flex-wrap: wrap; }
+  .header .meta span::before { content: "• "; }
+  /* Summary box */
+  .summary-box {
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    color: var(--blue);
+    line-height: 1.8;
+  }
+  .summary-box strong { display: block; font-size: 1rem; margin-bottom: 6px; }
+  /* Action items */
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .action-card {
+    background: var(--warn-light);
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+  }
+  .action-card .owner {
+    font-size: 0.78rem;
+    color: var(--warn);
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .action-card p { color: var(--text); line-height: 1.6; }
+  /* Section */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--accent-light);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .icon { font-size: 1.1rem; }
+  .section-header h2 { font-size: 1rem; font-weight: 700; color: var(--accent); }
+  .section-body { padding: 16px 20px; }
+  /* Items */
+  .item { margin-bottom: 14px; }
+  .item:last-child { margin-bottom: 0; }
+  .item .label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 3px;
+  }
+  .item p, .item ul { font-size: 0.92rem; color: var(--text-sec); }
+  .item ul { padding-left: 18px; }
+  .item ul li { margin-bottom: 4px; }
+  /* Formula box */
+  .formula {
+    background: #F3F4F6;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    font-family: "Courier New", monospace;
+    color: var(--blue);
+    margin: 10px 0;
+    line-height: 2;
+  }
+  /* Tag */
+  .tag {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag.blue { background: var(--blue-light); color: var(--blue); }
+  .tag.red { background: var(--warn-light); color: var(--warn); }
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+  /* Transcript section */
+  .transcript-header {
+    background: #F3F4F6;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .transcript-header h2 { font-size: 0.95rem; font-weight: 700; color: var(--gray); }
+  .transcript-body {
+    padding: 16px 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    color: var(--text-sec);
+    line-height: 2;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--gray);
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>會議記錄｜汎樂創意內部策略討論</h1>
+  <div class="meta">
+    <span>日期：2026-06-17</span>
+    <span>性質：公司制度設計討論</span>
+    <span>出席：羅臻（LINA）、顧問</span>
+    <span>由 AI 自動整理｜MUSEON</span>
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="summary-box">
+  <strong>📋 本次討論重點總覽</strong>
+  本次對話圍繞公司三大核心議題：① 人員招聘進度確認（候選人觀望中，25-26 日前有答案）；② 公司管理架構——大腦（PM）與手腳（執案）分工制度、定期會議機制；③ 薪酬制度設計——獎金計算公式、開發提成、比稿獎金、加班費處理、以及公司福利方向。
+</div>
+
+<!-- 待辦行動 -->
+<h2 style="font-size: 0.9rem; font-weight: 700; color: var(--warn); margin-bottom: 10px; letter-spacing: 0.5px;">📌 待辦行動項目</h2>
+<div class="action-grid">
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>確認候選人（開發人員）25-26 日前是否給予回覆，視需要跟進</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>規劃「大腦 vs 手腳」分工制度與培訓方案，包含專案頭角色說明</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>確認月會固定週期，並加入公司共用行事曆</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>設計獎金 Excel 公式表，方便試算各專案分配金額</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>研究 AI 訂閱費用是否可納入公司福利（Teams/Business 方案）</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">顧問</div>
+    <p>出一版獎金制度初稿（含公式），再約下次討論修訂</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>研究設計師外發轉型可行性，預備備援設計資源（防止單點依賴）</p>
+  </div>
+  <div class="action-card">
+    <div class="owner">LINA</div>
+    <p>評估「明日之夜」整合外部打卡功能，解決外出上下班紀錄問題</p>
+  </div>
+</div>
+
+<!-- 議題一：人員招聘 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">👤</span>
+    <h2>議題一：開發人員招聘進度</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <div class="label">現況</div>
+      <p>目前有一位不錯的候選人，但對方同時在觀望其他機會，尚有後續兩間公司面試未完成。</p>
+    </div>
+    <div class="item">
+      <div class="label">候選人態度</div>
+      <ul>
+        <li>對開發工作有意願，理念上認同不是「亂槍打鳥」型開發</li>
+        <li>對 KPI 綁約型業務有疑慮，確認汎樂非此模式後較放鬆</li>
+        <li>有主動了解公司開發邏輯，顯示有想法</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="label">時間節點</div>
+      <p>對方承諾 <strong>6 月 25-26 日前</strong>給予最終回覆。</p>
+    </div>
+    <div class="item">
+      <div class="label">未處理事項</div>
+      <p>KPI 制度尚未與對方正式確認，待公司制度底定後說明。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 議題二：組織分工 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🧠</span>
+    <h2>議題二：大腦 vs 手腳分工制度</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <div class="label">核心概念</div>
+      <ul>
+        <li><span class="tag">大腦（PM）</span>負責專案調度、跨利害關係人溝通、甘特圖管理、資源協調</li>
+        <li><span class="tag blue">手腳（執案）</span>負責具體執行，有標準流程、表單、審計標準</li>
+        <li>大 PM 角色：統管公司所有專案，向老闆匯報，解放老闆面對個別專案頭的壓力</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="label">定期會議機制</div>
+      <ul>
+        <li>每個專案設定定期開會（30 分鐘即可），由專案負責人召開</li>
+        <li>時間不需固定，每次會議結束前當場共識下次時間</li>
+        <li><strong>月會</strong>需固定週期（每月第一週或最後一週），加入共用行事曆</li>
+        <li>會議節奏：每人宣告下次開會前要完成的工作 → 驗收</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="label">培訓方向</div>
+      <ul>
+        <li>大腦培訓：專案管理工具、流程規範、自製表單、資源調度</li>
+        <li>手腳培訓：職案執行流程、標準表單、品質審計標準</li>
+        <li>未來可設「職能輪調」制度，鼓勵跨角色提升能力</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 議題三：獎金制度 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">💰</span>
+    <h2>議題三：獎金制度設計</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <div class="label">專案獎金計算公式（已確認）</div>
+      <div class="formula">
+        總收入（例：100 萬）<br>
+        ↓ 扣除 專案變動成本（燈光、硬體、音響等直接成本）<br>
+        = 專案毛利（例：35%）<br>
+        ↓ 扣除 公司管銷攤提 30%（含人員、周轉）<br>
+        = 可分配毛利（例：5%）<br>
+        ↓ × 10%<br>
+        = 專案獎金池（例：總收入 × 5% × 10% = 0.5%）
+      </div>
+      <p style="font-size:0.82rem; color: var(--gray);">⚠️ 注意：當毛利越高，獎金池越大；毛利 46% 案子可分到 16%×10%=1.6% 的獎金</p>
+    </div>
+    <hr class="divider">
+    <div class="item">
+      <div class="label">A/B 分工獎金機制</div>
+      <ul>
+        <li>公司只管「10% 給主要專案負責人（A）」</li>
+        <li>A 自行決定分多少給協助者（B），公司不介入</li>
+        <li>好處：鼓勵自然形成默契雙人組，避免公司捲入分帳糾紛</li>
+      </ul>
+    </div>
+    <hr class="divider">
+    <div class="item">
+      <div class="label">開發提成（尚在討論）</div>
+      <ul>
+        <li>成功開發新案，額外多得 10% 提成（疊加在原本執案的 10% 上）</li>
+        <li>比稿（Pitch）獎金：固定金額 + 依案件規模額外千分之幾</li>
+      </ul>
+    </div>
+    <hr class="divider">
+    <div class="item">
+      <div class="label">顧問建議（參考舊顧問公司制度）</div>
+      <ul>
+        <li>2% 介紹人 ＋ 8% 成交業務（可再拆 4% 談案 ＋ 4% 砍單）</li>
+        <li>後端：5% 專案管理 ＋ 5% 關係管理（管理續約）</li>
+        <li>執案顧問：40%；公司留：40%</li>
+        <li>合計 100% 分配完畢，結構清晰可套用活動業</li>
+      </ul>
+    </div>
+    <hr class="divider">
+    <div class="item">
+      <div class="label">公司福利（額外獎金池）</div>
+      <ul>
+        <li>來源：稅後盈餘撥出 5-10% 作為員工福利池</li>
+        <li>旅遊福利：按年資，5 年以上國內旅遊 1.5 萬、國外 2 萬（可換等值消費，如看展、演唱會）</li>
+        <li>新方向討論：<span class="tag red">考慮將 AI 訂閱費納入公司福利</span>，強制使用可提升生產力並增加黏著度</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 議題四：薪資結構 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">📊</span>
+    <h2>議題四：薪資起薪結構</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <div class="label">加分項目（影響起薪級距）</div>
+      <ul>
+        <li>證照加分：語文類 ＋ 專業類分開計算</li>
+        <li>學歷加分：科系是否符合職務需求、國內外大學有差異</li>
+        <li>社團護照：大學期間的社團角色、活動策辦經驗（活動業尤重）</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="label">儲備幹部機制</div>
+      <ul>
+        <li>對有潛力但尚未升任的員工，設 3-6 個月培訓計劃</li>
+        <li>設定明確達標條件，全部達成才升任</li>
+        <li>概念類似量化 KPI，但用在晉升路徑規劃而非考績</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 議題五：加班與打卡 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🕐</span>
+    <h2>議題五：加班問題與打卡系統</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <div class="label">加班現況</div>
+      <ul>
+        <li>設計師因某品牌合作案加班嚴重，主因：前端給予資訊不準確導致反覆修改</li>
+        <li>根本問題：缺乏專案會議機制，資訊品質未被把關</li>
+        <li>目前規定：補休制度，可換薪資；已導入勞基法 1.34 / 1.67 倍計算</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="label">討論方向</div>
+      <ul>
+        <li>設計師可能有能力瓶頸（消化客戶需求不夠準確），需培訓</li>
+        <li>設計師結婚後離職風險高，建議評估是否轉為外發（全外發設計）</li>
+        <li>現有兩個外發設計資源，且均有使用 AI 輔助，彈性更大</li>
+      </ul>
+    </div>
+    <hr class="divider">
+    <div class="item">
+      <div class="label">打卡系統優化方向</div>
+      <ul>
+        <li>目前：公司門禁按鈕記錄進出 ＋ LINE 群組爆點（人工）</li>
+        <li>建議：整合進「明日之夜」APP，在 APP 內外出打卡（附照片+地點）</li>
+        <li>優點：自動彙整兩種打卡資料，不用建獨立網頁，更簡潔</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 決策快覽 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">✅</span>
+    <h2>本次討論已確認決策</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <ul>
+        <li>獎金計算公式：毛利 → 扣 30% 管銷 → 剩餘 × 10% ＝獎金池 <span class="tag">已確認</span></li>
+        <li>A/B 分工模式：公司只給 A，A 自行談分配 <span class="tag">已確認</span></li>
+        <li>月會需固定化，加入共用行事曆 <span class="tag">已確認</span></li>
+        <li>年薪加成（年終乘倍）：不傾向，傾向「多做多給」模式 <span class="tag">已確認</span></li>
+        <li>設計師加班問題不調整上限，但需從工作流程根本解決 <span class="tag">方向確認</span></li>
+        <li>AI 訂閱費納入福利：值得研究，請顧問協助查方案 <span class="tag blue">待跟進</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 洞見備注 -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">💡</span>
+    <h2>洞見備注（供後續決策參考）</h2>
+  </div>
+  <div class="section-body">
+    <div class="item">
+      <p><strong>獎金誘因不足的風險：</strong>當毛利只有 30-35%，扣完管銷後的可分配空間極小，員工實際拿到的獎金可能誘因不夠。建議設定毛利提升的額外獎勵機制（如毛利超過 40% 時加碼）。</p>
+    </div>
+    <div class="item">
+      <p><strong>設計師單點風險：</strong>目前設計依賴單一內部員工，且面臨離職風險。轉為外發生態系（多個外發 + AI 輔助）是更具韌性的架構，但需先建立外發管理 SOP。</p>
+    </div>
+    <div class="item">
+      <p><strong>大 PM 是關鍵角色：</strong>老闆目前是所有專案的最終協調者，沒有大 PM 就等於老闆永遠無法真正脫手。建議這個角色的職責、KPI、薪酬在制度設計時同步規劃。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  本會議記錄由 MUSEON AI 根據音訊逐字稿自動整理 ｜ 2026-06-19 生成<br>
+  逐字稿來源：羅臻_260617.m4a｜記錄僅供參考，以實際決策為準
+</div>
+
+</div>
+</body>
+</html>
