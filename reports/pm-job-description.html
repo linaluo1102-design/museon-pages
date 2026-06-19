@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>專案經理（PM）職務說明書</title>
+<style>
+  :root {
+    --primary: #1a237e;
+    --accent: #3949ab;
+    --light-accent: #e8eaf6;
+    --success: #2e7d32;
+    --warning: #f57f17;
+    --text: #212121;
+    --subtext: #5c6070;
+    --border: #c5cae9;
+    --bg: #f5f5f5;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Noto Sans TC', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a237e 0%, #3949ab 60%, #7986cb 100%);
+    color: white;
+    padding: 56px 40px 40px;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    max-width: 680px;
+  }
+  .meta-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--subtext); }
+  .meta-item strong { color: var(--text); font-weight: 600; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 60px; }
+  .section {
+    background: white;
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--light-accent);
+  }
+  .section-icon {
+    width: 40px; height: 40px;
+    background: var(--light-accent);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .section h2 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .intro-text { font-size: 1rem; color: var(--subtext); line-height: 1.8; }
+  .resp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .resp-card {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border-left: 4px solid var(--accent);
+  }
+  .resp-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .resp-card ul { padding-left: 16px; }
+  .resp-card li { font-size: 0.92rem; color: var(--subtext); margin-bottom: 4px; }
+  .competency-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .comp-card {
+    text-align: center;
+    padding: 20px 12px;
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .comp-card .emoji { font-size: 28px; margin-bottom: 8px; display: block; }
+  .comp-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .comp-card p { font-size: 0.8rem; color: var(--subtext); }
+  .stakeholder-table { width: 100%; border-collapse: collapse; }
+  .stakeholder-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .stakeholder-table td {
+    padding: 11px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .stakeholder-table tr:nth-child(even) td { background: var(--light-accent); }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag-high { background: #ffebee; color: #c62828; }
+  .tag-med { background: #fff8e1; color: #f57f17; }
+  .tag-low { background: #e8f5e9; color: #2e7d32; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .kpi-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .kpi-card .kpi-label { font-size: 0.8rem; color: var(--subtext); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-card .kpi-title { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .kpi-card .kpi-desc { font-size: 0.82rem; color: var(--subtext); }
+  .kpi-card.k1 { background: #e8eaf6; }
+  .kpi-card.k2 { background: #e8f5e9; }
+  .kpi-card.k3 { background: #fff8e1; }
+  .kpi-card.k4 { background: #fce4ec; }
+  .kpi-card.k5 { background: #e0f2f1; }
+  .kpi-card.k6 { background: #f3e5f5; }
+  .qual-list { display: flex; flex-direction: column; gap: 10px; }
+  .qual-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg);
+    border-radius: 8px;
+  }
+  .qual-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .qual-item p { font-size: 0.92rem; color: var(--subtext); }
+  .qual-item strong { color: var(--text); }
+  .sources-list { list-style: none; padding: 0; }
+  .sources-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .sources-list li:last-child { border-bottom: none; }
+  .sources-list a { color: var(--accent); text-decoration: none; }
+  .sources-list a:hover { text-decoration: underline; }
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.8rem;
+    color: var(--subtext);
+  }
+  @media (max-width: 640px) {
+    .resp-grid { grid-template-columns: 1fr; }
+    .competency-grid { grid-template-columns: 1fr 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+    .meta-bar { padding: 12px 20px; gap: 16px; }
+    .section { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Job Description</div>
+  <h1>專案經理（PM）</h1>
+  <p class="subtitle">Project Manager — 統籌專案全生命週期，串聯大腦與手腳，解放老闆決策能量的核心角色</p>
+</div>
+
+<div class="meta-bar">
+  <div class="meta-item"><span>📍</span><strong>部門：</strong>運營管理部</div>
+  <div class="meta-item"><span>📊</span><strong>匯報對象：</strong>執行長（CEO）/ 大 PM</div>
+  <div class="meta-item"><span>🏷️</span><strong>職級：</strong>中階管理</div>
+  <div class="meta-item"><span>📋</span><strong>參考框架：</strong>PMI · PMBOK Guide</div>
+</div>
+
+<div class="container">
+
+  <!-- 職務概述 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📌</div>
+      <h2>職務概述</h2>
+    </div>
+    <p class="intro-text">
+      專案經理（Project Manager，PM）是公司專案運作的核心協調者，負責從需求確認到交付完成的全生命週期管理。PM 扮演「大腦」角色——負責專案調度、跨部門溝通、資源分配與進度掌控；讓執行手腳依標準流程推進，同時向老闆提供高層次的專案健康度視圖，而非個別問題清單。PM 的核心價值在於：讓老闆被解放，讓執行者有方向，讓客戶感受到一致性與可信賴。
+    </p>
+  </div>
+
+  <!-- 主要職責 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <h2>主要職責</h2>
+    </div>
+    <div class="resp-grid">
+      <div class="resp-card">
+        <h4>規劃與啟動</h4>
+        <ul>
+          <li>定義專案範疇、目標與交付物</li>
+          <li>建立工作分解結構（WBS）</li>
+          <li>制定時程、里程碑與甘特圖</li>
+          <li>評估資源需求與預算框架</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <h4>執行與監控</h4>
+        <ul>
+          <li>主持定期專案會議（每專案 30 分鐘）</li>
+          <li>追蹤進度、識別偏差並提出修正</li>
+          <li>管理專案風險登錄表並啟動應急方案</li>
+          <li>確保成員按標準流程與表單執行</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <h4>跨部門溝通</h4>
+        <ul>
+          <li>識別並盤點所有利害關係人</li>
+          <li>定期發送專案狀態更新報告</li>
+          <li>協調跨功能衝突，防止事項繞過 PM</li>
+          <li>擔任客戶與內部團隊的主要接窗</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <h4>收尾與複盤</h4>
+        <ul>
+          <li>確認交付物符合品質審計標準</li>
+          <li>取得利害關係人正式驗收確認</li>
+          <li>組織專案複盤，沉澱改善建議</li>
+          <li>更新標準流程與表單版本</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <h4>資源與預算管理</h4>
+        <ul>
+          <li>協調人力資源排班，避免超載</li>
+          <li>監控實際支出 vs 預算差異</li>
+          <li>在授權範圍內自主調配（5% 以內）</li>
+          <li>超出授權及時向大 PM / 老闆升報</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <h4>大 PM 角色（高階）</h4>
+        <ul>
+          <li>統管公司所有進行中專案</li>
+          <li>每月向老闆提交整體健康度報告</li>
+          <li>跨專案資源衝突的最終仲裁者</li>
+          <li>建立並維護公司專案管理方法論</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 職能要求 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <h2>核心職能要求</h2>
+    </div>
+    <div class="competency-grid">
+      <div class="comp-card">
+        <span class="emoji">🗓️</span>
+        <h4>計畫與組織</h4>
+        <p>建立清晰時程、分解任務、管理甘特圖，讓複雜專案可視化</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">💬</span>
+        <h4>溝通與影響力</h4>
+        <p>清楚傳達進度與風險，能在無直接職權下推動跨部門協作</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">🧩</span>
+        <h4>問題解決</h4>
+        <p>快速識別根本原因，評估解決方案，做出有依據的判斷</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">⚠️</span>
+        <h4>風險管理</h4>
+        <p>主動偵測威脅，建立風險登錄表，啟動應急預案</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">🤝</span>
+        <h4>利害關係人管理</h4>
+        <p>識別、分析並維繫所有關鍵利害關係人的期待與信任</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">📊</span>
+        <h4>數據與判斷力</h4>
+        <p>用數字說話，以 KPI 追蹤健康度，判斷哪些事需升報</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">🏗️</span>
+        <h4>流程設計</h4>
+        <p>制定可重複使用的標準表單與 SOP，讓執行者有所遵循</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">🧠</span>
+        <h4>策略思維</h4>
+        <p>理解公司目標，確保專案推進方向與整體戰略一致</p>
+      </div>
+      <div class="comp-card">
+        <span class="emoji">🔄</span>
+        <h4>適應力</h4>
+        <p>在需求變動、人員變動、時間壓力下保持執行穩定性</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 利害關係人管理 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🌐</div>
+      <h2>利害關係人矩陣</h2>
+    </div>
+    <table class="stakeholder-table">
+      <thead>
+        <tr>
+          <th>利害關係人</th>
+          <th>關係類型</th>
+          <th>影響程度</th>
+          <th>PM 的核心任務</th>
+          <th>溝通節奏</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>執行長 / 老闆</strong></td>
+          <td>最終決策者</td>
+          <td><span class="tag tag-high">高</span></td>
+          <td>提供整體健康度視圖，僅在需要決策時升報</td>
+          <td>月報 / 異常即時</td>
+        </tr>
+        <tr>
+          <td><strong>大 PM</strong></td>
+          <td>直屬主管</td>
+          <td><span class="tag tag-high">高</span></td>
+          <td>資源衝突協調、跨專案優先序確認</td>
+          <td>週同步</td>
+        </tr>
+        <tr>
+          <td><strong>執行團隊（手腳）</strong></td>
+          <td>直接管理</td>
+          <td><span class="tag tag-high">高</span></td>
+          <td>分配任務、追蹤進度、培訓標準流程</td>
+          <td>每專案定期會議</td>
+        </tr>
+        <tr>
+          <td><strong>客戶 / 外部委託方</strong></td>
+          <td>需求提出者</td>
+          <td><span class="tag tag-high">高</span></td>
+          <td>確認範疇、管理期待、正式驗收確認</td>
+          <td>里程碑節點 / 月報</td>
+        </tr>
+        <tr>
+          <td><strong>部門主管</strong></td>
+          <td>資源提供者</td>
+          <td><span class="tag tag-med">中</span></td>
+          <td>協商人力支援，避免跨部門資源衝突</td>
+          <td>按需協調</td>
+        </tr>
+        <tr>
+          <td><strong>財務 / 採購</strong></td>
+          <td>支援部門</td>
+          <td><span class="tag tag-med">中</span></td>
+          <td>預算審核、合約確認、費用核銷</td>
+          <td>按需提交</td>
+        </tr>
+        <tr>
+          <td><strong>品質 / 法務</strong></td>
+          <td>稽核單位</td>
+          <td><span class="tag tag-low">一般</span></td>
+          <td>確保交付物符合審計標準與合規要求</td>
+          <td>收尾階段</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KPI -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📈</div>
+      <h2>績效指標（KPI）</h2>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card k1">
+        <div class="kpi-label">時程管理</div>
+        <div class="kpi-title">準時交付率</div>
+        <div class="kpi-desc">專案在計畫時程內完成的比例，目標 ≥ 90%</div>
+      </div>
+      <div class="kpi-card k2">
+        <div class="kpi-label">老闆解脫指數</div>
+        <div class="kpi-title">老闆被拉入細節次數</div>
+        <div class="kpi-desc">每週老闆被拉進個別專案細節的次數，目標趨近 0</div>
+      </div>
+      <div class="kpi-card k3">
+        <div class="kpi-label">預算管理</div>
+        <div class="kpi-title">預算達成率</div>
+        <div class="kpi-desc">實際支出 vs 核准預算的偏差率，目標控制在 ±5% 內</div>
+      </div>
+      <div class="kpi-card k4">
+        <div class="kpi-label">品質</div>
+        <div class="kpi-title">客戶滿意度（CSAT）</div>
+        <div class="kpi-desc">交付物驗收滿意度，目標分數 ≥ 4.0 / 5.0</div>
+      </div>
+      <div class="kpi-card k5">
+        <div class="kpi-label">風險掌控</div>
+        <div class="kpi-title">風險處理時效</div>
+        <div class="kpi-desc">從風險識別到啟動應對方案的平均時間，目標 ≤ 24hr</div>
+      </div>
+      <div class="kpi-card k6">
+        <div class="kpi-label">跨部門衝突</div>
+        <div class="kpi-title">衝突自主解決率</div>
+        <div class="kpi-desc">不需升報老闆、PM 自主解決的跨部門衝突比例，目標 ≥ 80%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 資格要求 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🎓</div>
+      <h2>資格要求</h2>
+    </div>
+    <div class="qual-list">
+      <div class="qual-item">
+        <div class="qual-dot"></div>
+        <p><strong>學歷：</strong>大學（含）以上，商學、管理、資訊或相關科系為佳；同等工作經驗亦可考量</p>
+      </div>
+      <div class="qual-item">
+        <div class="qual-dot"></div>
+        <p><strong>工作年資：</strong>具備 2 年以上專案執行或協調經驗；有擔任 PM 主導角色者優先</p>
+      </div>
+      <div class="qual-item">
+        <div class="qual-dot"></div>
+        <p><strong>專業認證（加分）：</strong>PMP（PMI）、CAPM、Scrum Master（CSM）等專案管理認證；PMP 認證者薪資溢價平均 33%</p>
+      </div>
+      <div class="qual-item">
+        <div class="qual-dot"></div>
+        <p><strong>工具能力：</strong>熟悉甘特圖工具（Asana、Monday.com、Notion、MS Project）；能製作清晰的一頁式報告</p>
+      </div>
+      <div class="qual-item">
+        <div class="qual-dot"></div>
+        <p><strong>語言：</strong>中文溝通流暢為必要條件；英文讀寫能力為加分項（跨國客戶場景）</p>
+      </div>
+      <div class="qual-item">
+        <div class="qual-dot"></div>
+        <p><strong>軟實力：</strong>主動承擔、抗壓性高、善於聆聽；能在無直接職權下推動他人協作完成任務</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 決策授權範圍 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚖️</div>
+      <h2>決策授權邊界（建議填寫）</h2>
+    </div>
+    <table class="stakeholder-table">
+      <thead>
+        <tr>
+          <th>情境</th>
+          <th>PM 自主決定</th>
+          <th>需向大 PM / 老闆確認</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>調整專案內部排程</td>
+          <td>✅ 是</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>改動預算 5% 以內</td>
+          <td>✅ 是</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>調整執行成員日常任務</td>
+          <td>✅ 是</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>更換執行成員（人事變動）</td>
+          <td>—</td>
+          <td>✅ 需確認</td>
+        </tr>
+        <tr>
+          <td>客戶要求追加範疇</td>
+          <td>—</td>
+          <td>✅ 需確認</td>
+        </tr>
+        <tr>
+          <td>預算超支 5% 以上</td>
+          <td>—</td>
+          <td>✅ 需確認</td>
+        </tr>
+        <tr>
+          <td>終止專案 / 重大方向調整</td>
+          <td>—</td>
+          <td>✅ 需確認</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.85rem;color:var(--subtext);margin-top:12px;">* 此表建議由老闆與 PM 共同填妥後正式宣布，是 PM 制度能否落地的關鍵第一步。</p>
+  </div>
+
+  <!-- 來源 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔗</div>
+      <h2>參考來源</h2>
+    </div>
+    <ul class="sources-list">
+      <li><a href="https://thedigitalprojectmanager.com/career/project-manager-job-description/" target="_blank">The Digital Project Manager — Project Manager Job Description, Roles, Responsibilities 2026</a></li>
+      <li><a href="https://monday.com/blog/project-management/project-manager-roles-and-responsibilities/" target="_blank">Monday.com — Project Manager Roles and Responsibilities: The Complete 2026 Guide</a></li>
+      <li><a href="https://www.theknowledgeacademy.com/blog/pmp-project-manager-job-description/" target="_blank">The Knowledge Academy — PMP Project Manager Job Description with Template & Examples</a></li>
+      <li><a href="https://www.managertoday.com.tw/articles/view/59756" target="_blank">經理人 Manager Today — PM 是什麼意思、都在做什麼？圖解 5 種 PM 職位類型</a></li>
+      <li><a href="https://medium.com/jcstorytelling/%E5%A6%82%E4%BD%95%E5%AE%9A%E7%BE%A9%E4%B8%80%E4%BD%8Dpm%E5%B0%88%E6%A1%88%E7%B6%93%E7%90%86%E7%B8%BE%E6%95%88kpi-e44718d29a8e" target="_blank">Medium — 如何定義一位 PM 專案經理績效 KPI？</a></li>
+      <li><a href="https://www.indeed.com/hire/job-description/project-manager" target="_blank">Indeed — Project Manager Job Description [Updated for 2026]</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  本文件由 MUSEON 依據 PMI PMBOK 框架與台灣企業管理實務整合生成 · 2026
+</div>
+
+</body>
+</html>
