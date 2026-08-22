@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI時代的轉向勇氣與時機判斷｜兩則教學個案</title>
+<style>
+  :root{
+    --ink:#1c1c1e; --sub:#4a4a4f; --muted:#7a7a80;
+    --bg:#faf9f6; --card:#ffffff; --line:#e7e4dd;
+    --accent-success:#1f7a4d; --accent-success-bg:#e6f4ec;
+    --accent-failure:#a4302f; --accent-failure-bg:#fbeceb;
+    --gold:#9c7a35;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+    line-height:1.9; font-size:17px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:48px 22px 96px;}
+  .masthead{text-align:center; margin-bottom:8px;}
+  .masthead .eyebrow{
+    font-size:13px; letter-spacing:.18em; color:var(--gold); font-weight:600; text-transform:uppercase;
+  }
+  .masthead h1{
+    font-size:28px; line-height:1.5; margin:14px 0 10px; font-weight:800;
+  }
+  .masthead .meta{color:var(--muted); font-size:14px;}
+  .masthead hr{border:none; border-top:1px solid var(--line); margin:28px auto 40px; width:64px; border-top-width:3px; border-color:var(--ink);}
+
+  .case-badge{
+    display:inline-block; font-size:13px; font-weight:700; letter-spacing:.06em;
+    padding:5px 14px; border-radius:999px; margin-bottom:16px;
+  }
+  .case-badge.success{ background:var(--accent-success-bg); color:var(--accent-success); }
+  .case-badge.failure{ background:var(--accent-failure-bg); color:var(--accent-failure); }
+
+  .case-title{
+    font-size:25px; line-height:1.5; font-weight:800; margin:0 0 10px;
+  }
+  .case-company{
+    color:var(--muted); font-size:14px; margin-bottom:34px; padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .case-body h3{
+    font-size:15px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;
+    color:var(--muted); margin:38px 0 14px;
+  }
+  .case-body h3::before{ content:"— "; color:var(--gold); }
+  .case-body p{ margin:0 0 16px; color:var(--sub); }
+
+  .pull-quote{
+    margin:26px 0; padding:4px 0 4px 22px; border-left:3px solid var(--gold);
+  }
+  .pull-quote p{
+    font-size:19px; line-height:1.65; font-weight:600; color:var(--ink); font-style:normal;
+    margin:0;
+  }
+
+  .framework-grid{
+    display:grid; grid-template-columns:1fr; gap:16px; margin:20px 0;
+  }
+  @media(min-width:620px){ .framework-grid{ grid-template-columns:1fr 1fr; } }
+  .framework-grid .fw-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 18px 16px;
+  }
+  .framework-grid .fw-card h4{
+    margin:0 0 8px; font-size:15px; font-weight:800; color:var(--ink);
+  }
+  .framework-grid .fw-card p{ margin:0; font-size:15px; color:var(--sub); }
+
+  .perspective-grid{
+    display:grid; grid-template-columns:1fr; gap:14px; margin:22px 0;
+  }
+  @media(min-width:620px){ .perspective-grid{ grid-template-columns:1fr 1fr; } }
+  .perspective-grid .p-card{
+    border-radius:10px; padding:16px 18px; font-size:15px;
+  }
+  .perspective-grid .p-card.for{ background:var(--accent-success-bg); }
+  .perspective-grid .p-card.against{ background:var(--accent-failure-bg); }
+  .perspective-grid .p-card .who{ font-weight:800; margin-bottom:6px; display:block; }
+
+  .takeaway-box{
+    margin-top:38px; padding:22px 22px 20px; background:var(--card);
+    border:1px solid var(--line); border-radius:12px;
+  }
+  .takeaway-label{
+    font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:800; color:var(--gold);
+    margin-bottom:12px;
+  }
+  .takeaway-box ol{ margin:0; padding-left:20px; color:var(--sub); }
+  .takeaway-box li{ margin-bottom:10px; line-height:1.75; }
+  .takeaway-box li:last-child{ margin-bottom:0; }
+
+  .case-divider{
+    border:none; border-top:1px dashed var(--line); margin:64px 0;
+  }
+
+  footer{
+    margin-top:72px; padding-top:22px; border-top:1px solid var(--line);
+    font-size:13px; color:var(--muted); text-align:center; line-height:1.8;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="eyebrow">教學個案 · Teaching Case</div>
+    <h1>AI時代的轉向勇氣與時機判斷</h1>
+    <div class="meta">兩則對照個案　敏捷轉向 vs. 執行失速　｜　2026年8月</div>
+    <hr>
+  </div>
+
+  <section id="case-success">
+    <span class="case-badge success">成功篇</span>
+    <h2 class="case-title">他們賭的不是技術，是六個月</h2>
+    <div class="case-company">AI對話基礎設施 · 美國西岸 · 2023年 · 月經常性收入自零起步，十八個月後站上七位數美元量級</div>
+
+    <div class="case-body">
+      <h3>場景</h3>
+      <p>陸子謙站在K社十七樓的落地窗前，手機螢幕還亮著剛結束的內部demo回放——那是他過去五年最熟悉的畫面：一群工程師圍著筆電，看著模型生成的對話一句句吐出來，安靜得像在教堂裡。不同的是，這一次他沒有鼓掌。凌晨兩點，他傳了一則訊息給何知行：「我覺得我們該辭職了。」何知行秒回：「現在？我們才剛升職。」陸子謙盯著那句回覆看了很久，回了一行字：「如果我們現在不辭，兩年後這件事會變成別人的故事，我們只是註腳。」三天後，兩人同時遞了辭呈。</p>
+
+      <h3>賭注</h3>
+      <p>放棄的是七位數年薪與已經排到明年的股票歸屬計畫；賭的是一個連投資人都在問「這跟K社明年要推的功能有什麼不一樣」的產品。留在K社的老同事蘇眉在餞行飯局上說得毫不客氣：「你們的技術優勢頂多領先六個月，K社一旦決定做，資源量級不是你們能比的。」支持的一方則賭在另一件事上——時機比技術更稀缺，而稀缺的東西正在快速貶值。</p>
+
+      <h3>框架透視</h3>
+      <p>從資源基礎觀點（RBV，看的是企業的競爭優勢是否建立在稀少、難以模仿的資源上）來看，陸子謙握有的不是程式碼，而是「對能力拐點的提前判斷」——這種資源會隨時間迅速貶值，越晚行動越不值錢，這正是他堅持立刻離職的邏輯根源。</p>
+
+      <div class="perspective-grid">
+        <div class="p-card for">
+          <span class="who">柯維安（天使投資人）</span>
+          先動能鎖定人才與敘事定價權，晚一步連故事都講不到。
+        </div>
+        <div class="p-card against">
+          <span class="who">陳博文（產業分析師）</span>
+          先動優勢只在資本結構對稱的市場才成立，你們賭的不是先動，是K社會不會「選擇」動。
+        </div>
+      </div>
+
+      <p>選擇權理論（Real Options，看的是不確定性下「保留選擇、延後全額投入」的價值）能解釋蘇眉那句忠告背後的邏輯——先觀察、小額測試、等訊號更明確再全力投入。但陸子謙反駁的正是這個假設的代價：當視窗期本身在關閉，等待的成本已經高過選擇權本身的價值，因為視窗一旦關上，選擇權不是貶值，是直接歸零。兩套框架看的是同一個決策，卻站在時間的兩端。</p>
+
+      <div class="pull-quote"><p>「你們賭的不是先動，是K社會不會『選擇』動。」——這句話後來精準預言了轉折。</p></div>
+
+      <h3>轉折</h3>
+      <p>陸子謙原本的假設是：K社因為組織慣性，至少要一年才會端出對標產品。這個假設在第九個月被推翻——K社在一次內部黑客松後，三週內就推出功能雛形，證明「大廠不會快速複製」這條默認假設崩塌的速度遠超預期。意外的是，潮汐智能沒有因此崩盤：他們發現真正留住早期客戶的，不是模型效果的領先幅度，而是客戶已經把整套工作流程嵌進了他們的介面——轉換成本，而不是技術差距，成了真正的護城河。</p>
+
+      <h3>結局與數字</h3>
+      <p>十八個月後，這家新創的月經常性收入從零成長到七位數美元量級，估值站上九位數美元門檻。同一時間，K社推出的對標功能因為要塞進既有產品的審核流程，上線延遲超過一季；等它真正對外開放時，對手已經簽下第一批把系統寫進合約年限的企業客戶，退出成本遠高於單純比較功能優劣。</p>
+
+      <h3>複利點</h3>
+      <p>複利不是從產品上線那天開始的，是從第一份「系統整合進客戶內部工作流」的合約簽字那一刻開始——那一刻起，每晚一天更換供應商的成本都在替新創加值，技術領先幅度反而變得不再是決勝點。</p>
+    </div>
+
+    <div class="takeaway-box">
+      <div class="takeaway-label">開放討論</div>
+      <ol>
+        <li>如果K社從一開始就選擇「快速跟進」而非「內部審核優先」，這家新創還撐得住嗎？</li>
+        <li>陸子謙的判斷被證明是對的，但如果視窗期沒有如預期般存在，這場豪賭跟盲目衝動的差別在哪裡？</li>
+        <li>轉換成本護城河一旦建立，會不會反過來讓創辦團隊自己陷入創新惰性？</li>
+        <li>蘇眉的選擇權邏輯——先觀察、小額測試——在什麼樣的市場條件下才會是正確答案？</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="case-divider">
+
+  <section id="case-failure">
+    <span class="case-badge failure">失敗篇</span>
+    <h2 class="case-title">願景撐不過一支三分鐘的實測影片</h2>
+    <div class="case-company">穿戴式AI裝置 · 北美 · 2023年成立、2024年上市 · 募資規模達九位數美元，上市半年內宣告出售</div>
+
+    <div class="case-body">
+      <h3>場景</h3>
+      <p>上市前兩週的星期五晚上，林亦晨坐在會議室裡，桌上攤著韓森剛列印出來的測試報告：連續使用四十分鐘後，裝置外殼溫度超過人體舒適上限，語音回應在嘈雜環境下經常延遲超過三秒。韓森把報告推過去：「這不是還能優化的小問題，這是物理限制——電池體積跟散熱面積在這個尺寸下本來就是互相衝突的。」林亦晨沒有立刻回話，他看向季雯，季雯正在螢幕另一端跟裴總開視訊，討論下週媒體發表會的流程。會議室安靜了將近十秒，最後林亦晨說了一句：「發表會的邀請函已經寄出去了。」</p>
+
+      <h3>賭注</h3>
+      <p>延後上市，等於向剛完成新一輪募資的投資人承認敘事出了問題，下一輪估值幾乎必然被重新定價；如期出貨，則是賭消費者會把「願景」看得比「完成度」重，賭科技媒體會用早期產品的寬容標準來評測，而不是拿它跟手機相比。裴總在董事會上說得直接：「我們已經燒了這麼多錢建立起的敘事動能，現在停下來，就是承認這件事失敗了。」</p>
+
+      <h3>框架透視</h3>
+      <p>技術採用生命週期理論（Crossing the Chasm，看的是產品要跨越早期採用者與早期大眾之間的鴻溝，靠的是「完整產品」而非「願景」）正是韓森立場的根基：連基本可靠度都沒跨過門檻的產品，不該用來爭取早期大眾，只能留在最寬容的極早期玩家手上；季雯的反駁則是「先讓願景被感受到，體驗會隨迭代版本追上」——兩人爭的其實是「哪一種使用者能撐住產品現在的粗糙」。</p>
+
+      <div class="framework-grid">
+        <div class="fw-card">
+          <h4>沉沒成本謬誤／承諾升級</h4>
+          <p>看的是已投入的資源如何反過來扭曲後續的理性判斷。裴總代表的正是這股壓力——九位數募資與對外承諾的時程，讓「如期出貨」在會議室裡感覺像唯一選項，即使技術訊號早已亮起紅燈。</p>
+        </div>
+        <div class="fw-card">
+          <h4>定位理論</h4>
+          <p>看的是產品在消費者心智裡被拿來跟誰比較。記者祁越在發表會後公開提問：「如果它連手機的基本功能都要依賴，為什麼不直接做成一個App？」這句話點破了曜行科技把自己放進「手機替代品」這把最嚴苛的量尺，而非「手機的輔助配件」這把寬容得多的量尺。</p>
+        </div>
+      </div>
+
+      <h3>轉折</h3>
+      <p>林亦晨原本的假設是：只要願景夠強，消費者會容忍早期體驗的粗糙，就像早期智慧型手機一樣。這個假設在上市三天後被科技媒體的實測影片直接戳破——影片裡裝置在戶外陽光下幾乎無法辨識畫面，連續問答兩次後就過熱降頻，影片在社群媒體上以病毒式速度傳播。轉折點不是產品本身突然變差，而是社群媒體時代把「早期產品的容錯率」直接壓到接近零——願景敘事撐不過一支三分鐘的實測影片。</p>
+
+      <div class="pull-quote"><p>「如果它連手機的基本功能都要依賴，為什麼不直接做成一個App？」</p></div>
+
+      <h3>結局與數字</h3>
+      <p>上市後前六週，退貨數量超過銷售數量，客服系統一度被退貨申請淹沒。原訂的月費訂閱制在退貨潮中幾乎沒有機會累積訂戶基礎。半年多後，公司以募資總額約一折的價格，把資產出售給一家硬體大廠。</p>
+
+      <h3>崩壞點</h3>
+      <p>不可逆的那一刻，不是實測影片爆紅的當下，而是董事會在那之後選擇「維持原定價與訂閱制、加碼廣告對打負評」而不是立刻鬆動承諾框架的那次決議——從那一刻起，現金流出的速度已經超過任何後續產品迭代能追上的速度，退貨處理成本與廣告支出同時侵蝕本就緊繃的現金部位，出售資產成了桌上唯一還留著的選項。</p>
+    </div>
+
+    <div class="takeaway-box">
+      <div class="takeaway-label">開放討論（如果時光倒流）</div>
+      <ol>
+        <li>如果曜行科技在上市前就把定位從「手機替代品」改成「手機的輔助配件」，同樣的續航與延遲問題還會是致命傷嗎？</li>
+        <li>韓森的測試報告在會議室裡被聽見了，卻沒有被採納——如果時光倒流回那個星期五晚上，林亦晨當時還有哪些他沒看到的選項？</li>
+        <li>沉沒成本壓力幾乎存在於每一家募資後的新創，曜行科技是特例，還是所有靠敘事驅動募資的公司遲早都要面對的結構性風險？</li>
+        <li>如果沒有那支病毒式負評影片，公司真的能撐到下一輪迭代嗎，還是失敗只是被推遲？</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    本文為教學個案，人物與公司均為化名，情節依公開產業模式與可查證事實重構撰寫，用於課堂討論，不代表對任何真實企業或個人的事實陳述。
+  </footer>
+
+</div>
+</body>
+</html>
