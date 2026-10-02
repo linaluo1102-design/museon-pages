@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商業決策的十字路口：Nvidia vs Intel 三視角會診</title>
+<style>
+  :root {
+    --bg: #f7f5f1;
+    --card: #ffffff;
+    --ink: #1f1b16;
+    --sub: #5c554c;
+    --accent: #b5541c;
+    --accent2: #1c5a63;
+    --line: #e4dfd6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.75;
+    font-size: 17px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+  header { margin-bottom: 36px; }
+  header .tag {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 3px 12px;
+    margin-bottom: 14px;
+  }
+  h1 { font-size: 28px; margin: 0 0 8px; line-height: 1.4; }
+  .meta { color: var(--sub); font-size: 14px; }
+  .case-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  @media (max-width: 560px) {
+    .case-cards { grid-template-columns: 1fr; }
+  }
+  .case-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .case-card.win { border-top: 4px solid #2f7d5a; }
+  .case-card.lose { border-top: 4px solid #b5541c; }
+  .case-card h3 { margin: 0 0 6px; font-size: 17px; }
+  .case-card p { margin: 0; color: var(--sub); font-size: 15px; }
+  section { margin: 40px 0; }
+  h2 {
+    font-size: 21px;
+    border-left: 5px solid var(--accent2);
+    padding-left: 12px;
+    margin-bottom: 18px;
+  }
+  h3.sub {
+    font-size: 17px;
+    color: var(--accent2);
+    margin: 22px 0 8px;
+  }
+  .block {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .conflict {
+    background: #fdf1e8;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 15.5px;
+  }
+  .conflict b { color: var(--accent); }
+  ul { padding-left: 22px; margin: 8px 0; }
+  li { margin-bottom: 6px; }
+  .framework {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .framework .oneliner {
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--sub);
+    font-size: 13px;
+  }
+  strong.lab { color: var(--accent2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">商業會診 · 三視角</span>
+  <h1>商業決策的十字路口<br>Nvidia（成功）vs Intel（失敗）</h1>
+  <div class="meta">2026-10-02 · Business-12 × SSA × Master-Strategy 三視角會診</div>
+</header>
+
+<div class="case-cards">
+  <div class="case-card win">
+    <h3>✅ 成功案例 — Nvidia</h3>
+    <p>2006 年起投入 CUDA 十幾年，在沒人要的年代先挖好護城河。2023 AI 需求爆發時，市場要的不是晶片，是已經跑了十幾年的軟體生態。</p>
+  </div>
+  <div class="case-card lose">
+    <h3>❌ 失敗案例 — Intel</h3>
+    <p>IDM 模式把組織節奏綁死在 x86 摩爾定律週期；平行運算專案（Larrabee）啟動又被砍，不是沒看到機會，是組織誘因持續懲罰偏離主業的賭注。</p>
+  </div>
+</div>
+
+<section>
+  <h2>視角一｜商業基本盤（Business-12 診斷）</h2>
+
+  <h3 class="sub">Nvidia — 三力特別強</h3>
+  <div class="block">
+    <ul>
+      <li><strong class="lab">生態力</strong>：CUDA 賣的不是晶片，是「叫全世界工程師用同一套工具十幾年」，對手想追，連人才庫都已經是 Nvidia 的。</li>
+      <li><strong class="lab">整合力</strong>：自己只做設計＋軟體，代工外包給台積電——是「整合但不包辦」，資源全押在能差異化的那一段。</li>
+      <li><strong class="lab">累積力</strong>：十年學術圈免費鋪貨換來的，不是 2023 年才長出來的。</li>
+    </ul>
+    <div class="conflict"><b>衝突點：</b>Nvidia 的生態力建立在「當年根本沒人要」的年代——這代表這個力的強，不是市場驗證出來的，是它自己先驗證、市場後補位。這跟一般商業直覺「市場說了算」是反的。</div>
+  </div>
+
+  <h3 class="sub">Intel — 三力同時崩</h3>
+  <div class="block">
+    <ul>
+      <li><strong class="lab">整合力</strong>：IDM 模式（自己設計＋自己造）本該是優勢，2023 一刻變成包袱——先進製程落後台積電，等於自己最該贏的那段反而拖垮自己。</li>
+      <li><strong class="lab">累積力</strong>：過去 x86 生態的累積，在 AI 浪潮裡變成「沉沒成本式慣性」，組織拿著贏過去的公式去打新戰場。</li>
+      <li><strong class="lab">談判力</strong>：客戶（雲端四大）轉頭找 Nvidia／台積電，Intel 在供應鏈的議價地位同步流失。</li>
+    </ul>
+    <div class="conflict"><b>衝突點：</b>累積力在 Nvidia 是資產，在 Intel 是包袱——同一種「力」可以是護城河也可以是墓穴，差別在「累積的是什麼」、「世界有沒有換戰場」。</div>
+  </div>
+</section>
+
+<section>
+  <h2>視角二｜顧問式客戶視角（SSA 診斷）</h2>
+
+  <h3 class="sub">把 Intel 決策層當客戶</h3>
+  <div class="block">
+    <p><strong class="lab">真正卡點：</strong>不是他嘴上說的「我們製程會追上」——那是症狀。真卡點是：公司治理結構把 CEO 考績跟季度每股盈餘綁死，讓「投資一個五年才看到回報的賽道」這件事，在組織裡沒有人有政治本錢去保護。</p>
+    <p><strong class="lab">自我欺騙：</strong>把「我們在 CPU 通用運算的優勢」直接外推成「在 AI 也會贏」——這是把舊戰場的勝利公式，未經檢驗地套到新戰場，是確認偏誤，不是分析錯誤。</p>
+    <p><strong class="lab">一個問題撬動改變：</strong>「如果這個部門要虧五年才開始賺錢，你會保護它，還是先保護你自己的任期？」——逼他們看清楚，自己保護的到底是公司的未來，還是自己的位子。</p>
+  </div>
+
+  <h3 class="sub">把 Nvidia（黃仁勳，2006-2012 早期賭注期）當客戶</h3>
+  <div class="block">
+    <p><strong class="lab">真正卡點：</strong>不是技術信心，是怎麼說服華爾街「一家賣遊戲卡的公司，為什麼要把錢砸進一個學術圈才用的平行運算平台」——這是資本市場耐心的問題，不是技術問題。</p>
+    <p><strong class="lab">自我欺騙（少見但有）：</strong>對單一供應鏈（台積電）集中度風險，長期輕描淡寫——賭注下得對不代表沒有未暴露的風險。</p>
+    <p><strong class="lab">一個問題：</strong>「如果台積電某天因地緣政治斷供，你這十年護城河還值多少？」</p>
+  </div>
+</section>
+
+<section>
+  <h2>視角三｜戰略層判斷（Master-Strategy 診斷）</h2>
+
+  <h3 class="sub">局勢（PEST）</h3>
+  <div class="block">
+    <ul>
+      <li><strong class="lab">Political</strong>：美中科技戰——出口管制對 Nvidia 是雙面刃（失去部分中國市場，換來美國政策扶植）；對 Intel 本土製造是政策利多（CHIPS Act），卻沒轉成技術優勢——政策紅利救不了執行力問題。</li>
+      <li><strong class="lab">Economic</strong>：2023 ChatGPT 引爆的雲端資本支出潮，直接變成 Nvidia 營收曲線的斜率。</li>
+      <li><strong class="lab">Social</strong>：十幾年養出來的 CUDA 開發者習慣，是一種社群鎖定。</li>
+      <li><strong class="lab">Technological</strong>：Transformer 架構恰好是矩陣平行運算的天下，精準打在 Nvidia 優勢軸線上——與其說 Nvidia 準，不如說它卡的那個位置剛好被新技術選中。</li>
+    </ul>
+  </div>
+
+  <h3 class="sub">Porter 五力（一句講穿）</h3>
+  <div class="block">
+    <p>Nvidia 最大風險是供應商議價力（台積電的唯一依賴）；Intel 最大風險反而是「自己同時是供應商也是自己的問題」——代工部門成了自己最大的內部瓶頸。</p>
+    <p>替代品威脅：雲端巨頭自研 ASIC（Google TPU、Amazon Trainium）是對 Nvidia 唯一真正在長的威脅；而對 Intel，連「被誰取代」都已經不是重點，是連入場資格都快沒了。</p>
+  </div>
+
+  <h3 class="sub">時機窗口</h3>
+  <div class="block">
+    <p>Nvidia 的窗口不是「抓住 2023」，是 2006 到 2023 整整十七年的複利——這種先行者優勢<strong class="lab">沒有「早或晚六個月」的概念</strong>，是連續十年才滾出來的，晚進場的人補不回來。</p>
+    <p>Intel 真正能扭轉的窗口是 2013-2015（Larrabee 被砍那幾年）。如果當時有人用政治資本保護這條線，現在的局面可能完全不同。錯過那個窗口後，軟體生態的十年差距在 2023 已經是不可逆的沉沒成本。</p>
+  </div>
+
+  <h3 class="sub">單一槓桿動作</h3>
+  <div class="block">
+    <p><strong class="lab">Nvidia：</strong>早期把 CUDA 免費送進大學課程、綁死開發者教育——這一個動作的連鎖反應貫穿十七年，是教科書級的「卡住轉換成本」。</p>
+    <p><strong class="lab">Intel（反向槓桿缺口）：</strong>不是做錯了哪一件事，是少了一個人願意拿自己的政治資本去保護一個當季不賺錢的賭注——<strong class="lab">缺失的槓桿，比做錯的動作更致命。</strong></p>
+  </div>
+</section>
+
+<section>
+  <h2>商業框架路由（自動選 3 支）</h2>
+
+  <div class="framework">
+    <div class="oneliner">1. Porter 五力 — 這個工具在看：一個產業裡，有幾種外部力量在擠你的利潤</div>
+    <p>Nvidia 的命門在供應商（台積電）；Intel 的命門詭異地在自己身上——當 IDM 模式讓「供應商」跟「你自己」是同一個人，製程落後就無處可轉嫁，這是 IDM 模式在先進製程競賽裡的結構性弱點，不是管理失誤。</p>
+  </div>
+
+  <div class="framework">
+    <div class="oneliner">2. 價值鏈 — 這個工具在看：你在哪一段真正創造差異化，其他段要不要自己扛</div>
+    <p>Nvidia 選擇「設計＋軟體自己做、製造外包」，把資源全壓在能差異化的那一段；Intel 選擇「全段自己扛」（IDM），代價是任何一段落後，全鏈都被拖垮——這是「整合是不是優勢」的分水嶺：整合力只在你每一段都贏時才是優勢，一段輸就變成全鏈的拖累。</p>
+  </div>
+
+  <div class="framework">
+    <div class="oneliner">3. BCG 矩陣 — 這個工具在看：你的業務組合裡，誰是明星、誰是現金牛、誰快變成狗</div>
+    <p>Intel 的 x86 伺服器／PC CPU 事業在 2023 是一隻正在從「現金牛」滑向「狗」的業務，而 Intel 幾乎沒有自己的「明星」業務去接棒；Nvidia 的遊戲顯卡才是舊現金牛，但 AI 加速器（資料中心 GPU）已經是毫無疑問的明星——差別在 Nvidia 在現金牛還賺錢的時候，就已經在孵明星，Intel 是等現金牛開始流血才回頭找明星，但已經沒時間了。</p>
+  </div>
+</section>
+
+<footer>
+  本報告由 Claude Code 於 MUSEON 專案內產出，案例素材為 2023 年後全球公開知名事件之分析觀點，非機密內容。
+</footer>
+
+</div>
+</body>
+</html>
